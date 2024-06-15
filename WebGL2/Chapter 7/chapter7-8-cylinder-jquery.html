@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Interactive Orthographic viewing of Cylinder</title>
+    <style>
+        #overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-family: monospace;
+            padding: 1em;
+            border-radius: 1em;
+            border: 1px solid #f00;
+            text-shadow: 0px 0px 1px white;
+        }
+
+    </style>
+
+    <script src="Common/js/gl.js"></script>
+    <script src="Common/js/shaders.js"></script>
+    <script src="Common/js/gl-matrix.js"></script>
+    <script src="Common/js/jquery-3.3.1.min.js"></script>
+    <script src="Common/js/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <link href='Common/js/jquery-ui-1.12.1/jquery-ui.min.css' type='text/css' rel='stylesheet' />
+    <link href='Common/css/styles.css' type='text/css' rel='stylesheet' />
+    <script>
+	"use script"
+        var gl;
+        var vertexArray;
+        var vertexBuffer;
+        var colorBuffer;
+        var shaderProg;
+        var vColor;
+        var points = [];
+        var colors = [];
+        var vertices = [];
+        var vertexColors = [];
+        var slices = 1;
+
+        const at = vec3.clone([0.0, 0.0, 0.0]);
+        const up = vec3.clone([0.0, 1.0, 0.0]);
+        var near = -1;
+        var far = 1;
+        var radius = 0.5;
+        var radiuseye = 0.5;
+        var theta = 10.0 * Math.PI / 180.0;
+        var phi =  0.0;
+        var dr = 5.0 * Math.PI / 180.0;
+
+        var left = -1.0;
+        var right = 1.0;
+        var ytop = 1.0;
+        var bottom = -1.0;
+
+        window.addEventListener("load", function () {
+            gl = GLInstance("myGLCanvas").fSetSize(500, 500).fClear();
+            gl.enable(gl.DEPTH_TEST);
+            setupShaders()
+            setupBuffers()
+            draw();
+        });
+
+        function setupShaders() {
+            shaderProg = ShaderUtil.domShaderProgram(gl, "vertex_shader", "fragment_shader", true);
+            gl.useProgram(shaderProg);
+            shaderProg.aPositionLoc = gl.getAttribLocation(shaderProg, "vPositionAttr"),
+                shaderProg.modelViewMatrixLoc = gl.getUniformLocation(shaderProg, "modelViewMatrix");
+            shaderProg.projectionMatrixLoc = gl.getUniformLocation(shaderProg, "projectionMatrix");
+            shaderProg.vColor = gl.getAttribLocation(shaderProg, "vColorAttr");
+            gl.useProgram(null);
+
+        }
+
+        function setupVertices() {
+            
+            var halfLength = 0.5;
+            for (var i = 0.0; i <= slices; i += 1) {
+
+                var theta = i * 2.0 * Math.PI / 180;
+                var nextTheta = (i + 1) * 2 * Math.PI / 180;
+
+                //vertex at the middle of end
+                var v0 = [
+                    0,
+                    halfLength,
+                    0
+                ];
+                //vertices at the edges of circle
+                var v1 = [
+                    radius * Math.cos(theta),
+                    halfLength,
+                    radius * Math.sin(theta)
+                ];
+                var v2 = [
+                    radius * Math.cos(nextTheta),
+                    halfLength,
+                    radius * Math.sin(nextTheta)
+                ];
+
+                //the same vertice sat the bottom of the cylinder
+                var v3 = [
+                    radius * Math.cos(nextTheta),
+                    -halfLength,
+                    radius * Math.sin(nextTheta)
+                ];
+
+                var v4 = [
+                    radius * Math.cos(theta),
+                    -halfLength,
+                    radius * Math.sin(theta)
+                ];
+
+                var v5 = [
+                    0,
+                    -halfLength,
+                    0
+                ];
+
+                vertices = vertices.concat(v0);
+                vertices = vertices.concat(v1);
+                vertices = vertices.concat(v2);
+                vertices = vertices.concat(v3);
+                vertices = vertices.concat(v4);
+                vertices = vertices.concat(v5);
+
+                vertexColors = vertexColors.concat([0.0, 0.0, 0.0]);// black
+                vertexColors = vertexColors.concat([1.0, 0.0, 0.0]);// red
+                vertexColors = vertexColors.concat([1.0, 1.0, 0.0]);// yellow
+                vertexColors = vertexColors.concat([0.0, 1.0, 0.0]);// green
+                vertexColors = vertexColors.concat([0.0, 0.0, 1.0]);// blue
+                vertexColors = vertexColors.concat([1.0, 0.0, 1.0]);// magenta
+            }
+        }
+
+
+        function setupBuffers() {
+
+            vertexBuffer = gl.createBuffer();
+            setupVertices();
+
+            vertexBuffer.itemSize = 3;
+            vertexBuffer.numberOfItems = vertices.length / 3;
+
+            colorBuffer = gl.createBuffer();
+
+            gl.useProgram(shaderProg);
+
+            vertexArray = gl.createVertexArray();
+            gl.bindVertexArray(vertexArray);
+            gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+            gl.enableVertexAttribArray(shaderProg.aPositionLoc);
+            gl.vertexAttribPointer(shaderProg.aPositionLoc, 3, gl.FLOAT, false, 0, 0);
+
+            gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexColors), gl.STATIC_DRAW);
+            gl.enableVertexAttribArray(shaderProg.vColor);
+            gl.vertexAttribPointer(shaderProg.vColor, 3, gl.FLOAT, false, 0, 0);
+
+            gl.bindVertexArray(null);
+        }
+
+        function draw() {
+            gl.clear(this.COLOR_BUFFER_BIT | this.DEPTH_BUFFER_BIT);
+            gl.bindVertexArray(vertexArray);
+
+            let modelViewMatrix = mat4.create();
+            let projectionMatrix = mat4.create();
+
+            let eye = vec3.clone([radiuseye * Math.sin(phi), radiuseye * Math.sin(theta),
+            radiuseye * Math.cos(phi)]);
+
+            mat4.lookAt(modelViewMatrix, eye, at, up);
+            mat4.ortho(projectionMatrix, left, right, bottom, ytop, near, far);
+
+            gl.uniformMatrix4fv(shaderProg.modelViewMatrixLoc, false, modelViewMatrix);
+            gl.uniformMatrix4fv(shaderProg.projectionMatrixLoc, false, projectionMatrix);
+
+            gl.drawArrays(gl.TRIANGLE_STRIP, 0, vertexBuffer.numberOfItems);
+            gl.bindVertexArray(null);
+            requestAnimationFrame(draw);
+        }
+    </script>
+    <script>
+        $(function () {
+            $("#increaseZ-btn").button();
+            $("#increaseZ-btn").click(function () { near *= 1.1; far *= 1.1; });
+            $("#decreaseZ-btn").button();
+            $("#decreaseZ-btn").click(function () { near *= 0.9; far *= 0.9; });
+            $("#increaseRadius-btn").button();
+            $("#increaseRadius-btn").click(function () { radiuseye *= 1.1; });
+            $("#decreaseRadius-btn").button();
+            $("#decreaseRadius-btn").click(function () { radiuseye *= 0.9; });
+            $("#increaseTheta-btn").button();
+            $("#increaseTheta-btn").click(function () { theta += dr; });
+            $("#decreaseTheta-btn").button();
+            $("#decreaseTheta-btn").click(function () { theta -= dr; });
+            $("#increasePhi-btn").button();
+            $("#increasePhi-btn").click(function () { phi += dr; });
+            $("#decreasePhi-btn").button();
+            $("#decreasePhi-btn").click(function () { phi -= dr; });
+
+            $('#slider-slice').slider({ value: 1.0, min: 1.0, max: 200.00, step: 1.0, slide: updateSlice, change: updateSlice , classes: {"ui-slider": "highlight"} });
+            function updateSlice() {
+                var v = $('#slider-slice').slider("value");
+                $('#slider-slice-value').html('<b>' + v + '</b>');
+                slices = v;
+                vertices = [];
+                vertexColors = [];
+                setupBuffers();
+                draw();
+            };
+
+        });
+    </script>
+</head>
+<body>
+    <div id="overlay">
+        Interactive Orthographic viewing of Cylinder
+        <p />
+        <button id="increaseZ-btn">Increase Z</button>
+        <button id="decreaseZ-btn">Decrease Z</button>
+        <button id="increaseRadius-btn">Increase R</button>
+        <button id="decreaseRadius-btn">Decrease R</button>
+        <p> </p>
+        <button id="increaseTheta-btn">Increase theta</button>
+        <button id="decreaseTheta-btn">Decrease theta</button>
+        <button id="increasePhi-btn">Increase phi</button>
+        <button id="decreasePhi-btn">Decrease phi</button>
+	 <table style='margin-left:0px'>
+            <tr><td>Slices:</td>
+            <td id='slider-slice-value' width='15%'><b>1.0</b></td>
+            <td width='60%'><div id='slider-slice'/></td>
+            </td></tr>
+        </table>
+    </div>
+    <canvas id="myGLCanvas"></canvas>
+    <script id="vertex_shader" type="x-shader/x-vertex">#version 300 es
+        in vec3 vPositionAttr;
+        in vec3 vColorAttr;
+        out vec4 vColor;
+        uniform mat4 modelViewMatrix;
+        uniform mat4 projectionMatrix;
+
+        void main(void){
+        gl_Position = projectionMatrix * modelViewMatrix *  vec4(vPositionAttr, 1.0);
+        //gl_Position.z = -gl_Position.z;
+        vColor = vec4(vColorAttr, 1.0);
+        }
+    </script>
+    <script id="fragment_shader" type="x-shader/x-fragment">#version 300 es
+        precision mediump float;
+        in vec4 vColor;
+        out vec4 finalColor;
+
+        void main(void) {
+        finalColor = vColor;
+        }
+    </script>
+
+</body>
+</html>

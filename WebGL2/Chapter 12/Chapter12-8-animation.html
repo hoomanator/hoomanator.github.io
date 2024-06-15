@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> A texture animation using texture 2d array</title>
+    <style>
+        #overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-family: monospace;
+            padding: 1em;
+            border-radius: 1em;
+            border: 1px solid #f00;
+            text-shadow: 0px 0px 1px white;
+        }
+    </style>
+
+    <script src="Common/js/gl.js"></script>
+    <script src="Common/js/shaders.js"></script>
+    <script src="Common/js/gl-matrix.js"></script>
+    <script src="Common/js/RenderLoop.js"></script>
+    <script src="Common/js/jquery-3.3.1.min.js"></script>
+    <script src="Common/js/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <link href='Common/js/jquery-ui-1.12.1/jquery-ui.min.css' type='text/css' rel='stylesheet' />
+    <link href='Common/css/style.css' type='text/css' rel='stylesheet' />
+
+
+    <script>
+        "use strict";
+        var gl;
+        var vertexArray;
+        var vertexBuffer;
+        var textureBuffer;
+        var shaderProg;
+        var points = [];
+        var vertices = [];
+        var texCoords = [];
+        var texture;
+
+        var gRLoop;
+        var frame = 0;
+        var NUM_IMAGES = 16;
+        var IMAGE_SIZE = {
+            width: 500,
+            height: 500,
+            depth: 16
+        };
+
+        window.addEventListener("load", function () {
+            gl = GLInstance("myGLCanvas").fSetSize(500, 500).fClear();
+            gl.enable(gl.DEPTH_TEST);
+            setupShaders();
+            setupTextures();
+            setupBuffers();
+            gRLoop = new RenderLoop(draw,5).start();
+        });
+
+        function setupShaders() {
+            shaderProg = ShaderUtil.domShaderProgram(gl, "vertex_shader", "fragment_shader", true);
+            gl.useProgram(shaderProg);
+            shaderProg.aPositionLoc = gl.getAttribLocation(shaderProg, "vPositionAttr");
+
+            shaderProg.vTexCoord = gl.getAttribLocation(shaderProg, "vTexCoord");
+            shaderProg.uTexture = gl.getUniformLocation(shaderProg, "textureMap");
+            shaderProg.uLayer = gl.getUniformLocation(shaderProg, "layer");
+
+            gl.useProgram(null);
+        }
+
+        function setupVertices() {
+
+         points = new Float32Array([
+       -1.0, -1.0,
+      1.0, -1.0,
+      1.0,  1.0,
+     1.0,  1.0,
+     -1.0,  1.0,
+     -1.0, -1.0
+     ]);
+      texCoords = new Float32Array([
+     0.0, 1.0,
+     1.0, 1.0,
+     1.0, 0.0,
+     1.0, 0.0,
+     0.0, 0.0,
+     0.0, 1.0
+     ]);
+
+        }
+
+
+        function setupBuffers() {
+
+            setupVertices();
+
+            gl.useProgram(shaderProg);
+
+            vertexArray = gl.createVertexArray();
+            gl.bindVertexArray(vertexArray);
+            
+            vertexBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(points), gl.STATIC_DRAW);
+            gl.enableVertexAttribArray(shaderProg.aPositionLoc);
+            gl.vertexAttribPointer(shaderProg.aPositionLoc, 2, gl.FLOAT, false, 0, 0);
+
+
+            textureBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, textureBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(texCoords), gl.STATIC_DRAW);
+            gl.vertexAttribPointer(shaderProg.vTexCoord, 2, gl.FLOAT, false, 0, 0);
+            gl.enableVertexAttribArray(shaderProg.vTexCoord);
+
+            gl.bindVertexArray(null);
+        }
+
+
+        function setupTextures() {
+            gl.useProgram(shaderProg);
+            texture = gl.createTexture();
+            var image = document.getElementById("animationImage");
+            gl.bindTexture(gl.TEXTURE_2D_ARRAY, texture);
+            const levels = 1;
+            const sliceWidth = 125;
+            const sliceHeight = 125;
+            const depth = 16;
+
+            //specifying the binding point (target) of the active texture
+            gl.texStorage3D(gl.TEXTURE_2D_ARRAY, levels, gl.RGBA8, sliceWidth, sliceHeight, depth);
+
+            texImageBySlice(gl, gl.TEXTURE_2D_ARRAY, levels, sliceWidth, sliceHeight, gl.RGBA, gl.UNSIGNED_BYTE, image);
+
+            gl.uniform1i(shaderProg.uTexture, 0);
+            gl.useProgram(null);
+        }
+
+        function texImageBySlice(gl, target, level, sliceWidth, sliceHeight, format, type, image) {
+            const slicesAcross = image.width / sliceWidth;
+            const slicesDown = image.height / sliceHeight;
+
+            // Tell WebGL the Number of pixels in a row.
+            gl.pixelStorei(gl.UNPACK_ROW_LENGTH, sliceWidth);
+
+            for (let y = 0; y < slicesDown; ++y) {
+                for (let x = 0; x < slicesAcross; ++x) {
+                    const xoff = x * sliceWidth;
+                    const yoff = y * sliceHeight;
+                    const d = y * slicesAcross + x;
+                    // Tell WebGL where to start copying from
+                    //Number of pixel images skipped before the first pixel is read from memory
+                    gl.pixelStorei(gl.UNPACK_SKIP_PIXELS, xoff);
+                    //Number of rows of pixel locations skipped before the first pixel is read from memory
+                    gl.pixelStorei(gl.UNPACK_SKIP_ROWS, yoff);
+                    const level = 0;
+                    //specifies a sub-rectangle of the current texture.
+                    gl.texSubImage3D(target, level, 0, 0, d, sliceWidth, sliceHeight, 1, format, type, image);
+                }
+            }
+
+            gl.pixelStorei(gl.UNPACK_ROW_LENGTH, 0);
+            gl.pixelStorei(gl.UNPACK_SKIP_PIXELS, 0);
+            gl.pixelStorei(gl.UNPACK_SKIP_ROWS, 0);
+        }
+
+        function draw() {
+            gl.useProgram(shaderProg);
+            gl.bindVertexArray(vertexArray);
+            gl.uniform1i(shaderProg.uLayer, frame);
+
+            frame = (frame + 1) % NUM_IMAGES;
+            
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
+            gl.bindVertexArray(null);
+            gl.useProgram(null);
+
+        }
+    </script>
+
+</head>
+<body>
+     <canvas id="myGLCanvas"></canvas>
+    <div id="overlay">
+        A texture animation using texture 2d array. The texture is also non-power-of-2.
+        
+      </div>
+   
+    <img id="animationImage" src="spritesheet.png" style="display:none" crossorigin="anonymous"/>
+    <script id="vertex_shader" type="x-shader/x-vertex">#version 300 es
+        in vec2 vPositionAttr;
+
+        in vec2 vTexCoord;
+        out vec2 fTexCoord;
+
+        void main(void){
+        gl_Position = vec4(vPositionAttr, 0.0, 1.0);
+        fTexCoord = vTexCoord;
+        }
+    </script>
+    <script id="fragment_shader" type="x-shader/x-fragment">#version 300 es
+        precision highp float;
+        precision highp int;
+        precision highp sampler2DArray;
+        out vec4 finalColor;
+
+        in  vec2 fTexCoord;
+        uniform sampler2DArray textureMap;
+        uniform int layer;
+
+        void main()
+        {
+            finalColor = texture( textureMap, vec3(fTexCoord, layer) );
+        }
+    </script>
+</body>
+</html>

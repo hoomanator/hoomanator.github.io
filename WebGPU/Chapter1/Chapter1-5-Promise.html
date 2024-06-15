@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="Hoomanator icon" href="../Images/H.png">
+    <title></title>
+</head>
+
+<body>
+    <h1>JavaScript Promise Object</h1>
+    <h2>The then() Method</h2>
+    <h3>My GPU Status: </h3>
+
+    <p id="GPU"></p>
+    <script>
+        function myGPU(some) {
+            document.getElementById("GPU").innerHTML = some;
+        }
+
+        let myPromise = new Promise(function (myResolve, myReject) {
+            let x = 0;
+
+            // The producing code (this may take some time)
+
+            if (x == 0) {
+                myResolve("OK");
+            } else {
+                myReject("Error");
+            }
+        });
+
+        // "Consuming Code" (Must wait for a fulfilled Promise)
+        myPromise.then(
+            function (value) { myGPU(value); },
+            function (error) { myGPU(error); }
+        );
+    </script>
+</body>
+</html>

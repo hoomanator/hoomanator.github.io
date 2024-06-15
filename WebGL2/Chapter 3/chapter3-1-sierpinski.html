@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Sierpinski Triangle</title>
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background-color: #404040;
+        }
+
+        canvas {
+            border: 1px solid black;
+        }
+
+        div {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+    <script src="Common/js/gl.js"></script>
+    <script src="Common/js/shaders.js"></script>
+    <script src="Common/js/gl-matrix.js"></script>
+
+    <script>
+        var gl;
+        var vertexArray;
+        var vertexBuffer;
+        var shaderProg;
+        var vColor;
+
+        window.addEventListener("load", function () {
+            //............................................
+            //Get our extended GL Context Object
+            gl = GLInstance("myGLCanvas").fSetSize(500, 500).fClear();
+
+            setupShaders()
+            setupBuffers()
+            draw();					//Draw the triangle
+        });
+
+        function setupShaders() {
+            shaderProg = ShaderUtil.domShaderProgram(gl, "vertex_shader", "fragment_shader", true);
+            gl.useProgram(shaderProg);				//Activate the Shader
+            //Get Location of Uniforms and Attributes.
+            shaderProg.aPositionLoc = gl.getAttribLocation(shaderProg, "a_position"),
+                shaderProg.uPointSizeLoc = gl.getUniformLocation(shaderProg, "uPointSize");				//Activate the Shader
+            gl.uniform1f(shaderProg.uPointSizeLoc, 1.0);		//Store data to the shader's uniform variable uPointSize
+
+            vColor = gl.getAttribLocation(shaderProg, "vColorAttr");
+
+            gl.useProgram(null);
+
+        }
+
+        function setupVertices() {
+
+            var NumPoints = 50000;
+            var myVerts, u, v, p, points = [], vertices = [];
+
+            // First, initialize the corners of our gasket with three points.
+            // Specify a starting point p for our iterations
+            // p must lie inside any set of three vertices
+            vertices[0] = vec3.clone([-1, -1, 0])
+            vertices[1] = vec3.clone([0, 1, 0,]);
+            vertices[2] = vec3.clone([1, -1, 0]);
+            u = vec3.create();
+            v = vec3.create();
+            p = vec3.create();
+
+            vec3.add(u, vertices[0], vertices[1]);
+            vec3.add(v, vertices[0], vertices[2]);
+            vec3.add(p, u, v);
+            vec3.scale(p, p, 0.5);
+
+            // And, add our initial point into our array of points
+            //The three dots or spread operator is used for array construction and destructuring
+            points.push(...p);
+
+            // Compute new points
+            // Each new point is located midway between
+            // last point and a randomly chosen vertex
+
+            for (var i = 0; points.length < NumPoints; ++i) {
+                var j = Math.floor(Math.random() * 3);
+                vec3.add(p, p, vertices[j]);
+                vec3.scale(p, p, 0.5);
+                points.push(...p);
+            }
+
+            myVerts = new Float32Array(points);
+
+            return myVerts;
+
+        }
+
+        function setupBuffers() {
+
+            vertexBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+            var vertices = setupVertices();
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+            vertexBuffer.itemSize = 2;
+            vertexBuffer.numberOfItems = vertices.length / 2;
+
+            gl.useProgram(shaderProg);
+
+            vertexArray = gl.createVertexArray();
+            gl.bindVertexArray(vertexArray);
+            gl.enableVertexAttribArray(shaderProg.aPositionLoc);
+            gl.vertexAttribPointer(shaderProg.aPositionLoc, 2, gl.FLOAT, false, 0, 0);
+            gl.bindVertexArray(null);
+        }
+
+        function draw() {
+            gl.bindVertexArray(vertexArray);
+            gl.disableVertexAttribArray(vColor);
+            gl.vertexAttrib4f(vColor, 1.0, 0.0, 0.0, 1.0);
+            gl.drawArrays(gl.POINTS, 0, vertexBuffer.numberOfItems);
+            gl.bindVertexArray(null);
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <canvas id="myGLCanvas"></canvas>
+    </div>
+
+    <script id="vertex_shader" type="x-shader/x-vertex">#version 300 es
+        in vec3 a_position;
+        in vec4 vColorAttr;
+        out vec4 vColor;
+        uniform float uPointSize;
+
+        void main(void){
+        gl_PointSize = uPointSize;
+        gl_Position = vec4(a_position, 1.0);
+        vColor = vColorAttr;
+        }
+    </script>
+    <script id="fragment_shader" type="x-shader/x-fragment">#version 300 es
+        precision mediump float;
+        in vec4 vColor;
+        out vec4 finalColor;
+
+        void main(void) {
+        finalColor = vColor;
+        }
+    </script>
+
+</body>
+</html>

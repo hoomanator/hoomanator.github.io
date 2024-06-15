@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="Hoomanator icon" href="../Images/H.png">
+    <title></title>
+</head>
+
+<body>
+    <h1>JavaScript Promise Object - Lambda</h1>
+    <h2>The then() Method</h2>
+    <h3>My GPU Status: </h3>
+
+    <p id="GPU"></p>
+    <script type="module">
+        // Using Async/Await
+        async function asyncFunction() {
+            try {
+                console.log("Start");
+                const promise = new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve("Resolved");
+                    }, 2000);
+                });
+                const result = await promise;
+                document.getElementById("GPU").innerHTML = result;
+                console.log(result);
+                console.log("End");
+            } catch (error) {
+                document.getElementById("GPU").innerHTML = error;
+                console.error(error);
+            }
+        }
+
+        asyncFunction()
+
+        //Output:
+        //Start
+        //Resolved
+        //End
+    </script>
+</body>
+</html>

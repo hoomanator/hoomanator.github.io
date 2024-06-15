@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script>window.addEventListener("gamepadconnected", function(e) {
+            console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+                e.gamepad.index, e.gamepad.id,
+                e.gamepad.buttons.length, e.gamepad.axes.length);
+
+            window.addEventListener("gamepaddisconnected", function(e) {
+                console.log("Gamepad disconnected from index %d: %s",
+                    e.gamepad.index, e.gamepad.id);
+            });
+
+            window.addEventListener("gamepadconnected", function(e) {
+                var gp = navigator.getGamepads()[e.gamepad.index];
+                console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+                    gp.index, gp.id,
+                    gp.buttons.length, gp.axes.length);
+                b0 = gp.buttons[0];
+                if (typeof (b0) == "object") {
+                    console.log(b.pressed);
+                }
+                else
+                    console.log(b0 == 1.0);
+            });
+});</script>
+    </head>
+       <body>
+
+    </body>
+</html>
