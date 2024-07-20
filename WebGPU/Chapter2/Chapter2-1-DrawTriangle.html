@@ -1,0 +1,90 @@
+﻿<!doctype html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="Hoomanator icon" href="../Images/H.png">
+    <title>Hello World WebGPU</title>
+</head>
+<body>
+    <canvas width="512" height="512"></canvas>
+    <script type="module">
+        const canvas = document.querySelector("canvas");
+
+        // WebGPU device initialization
+        if (!navigator.gpu) {
+            throw new Error("WebGPU not supported on this browser.");
+            console.log('Oops');
+        }
+
+        const adapter = await navigator.gpu.requestAdapter();
+        if (!adapter) {
+            throw new Error("No proper GPU Adapter found.");
+        }
+
+        const device = await adapter.requestDevice();
+
+        const context = canvas.getContext("webgpu");
+        const canvasFormat = navigator.gpu.getPreferredCanvasFormat();
+        context.configure({
+            device: device,
+            format: canvasFormat,
+        });
+
+
+        // Create GPUCommandEncoder
+        const commandEncoder = device.createCommandEncoder();
+
+        // Create GPURenderPassDescriptor to tell WebGPU which texture to draw into, then initiate render pass
+
+        const renderPassDescriptor = {
+            colorAttachments: [
+                {
+                    //clearValue: clearColor, //black!
+                    clearValue: { r: 1, g: 1, b: 0, a: 1 }, //Yellow
+                    loadOp: "clear",
+                    storeOp: "store",
+                    view: context.getCurrentTexture().createView(),
+                },
+            ],
+        };
+
+        const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor);
+
+        // Draw a triangle
+
+        const vertices = new Float32Array([
+            //    X     Y    Z
+                -0.5, -0.5,  0
+                 0.5, -0.5,  0
+                 0.5,  0.5,  0
+        ]);
+
+
+        const vertexBuffer = device.createBuffer({
+            label: "Cell vertices",
+            size: vertices.byteLength,
+            usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
+        });
+
+        device.queue.writeBuffer(vertexBuffer, 0, vertices);
+
+        const vertexBufferLayout = {
+            arrayStride: 8,
+            attributes: [{
+                format: "float32x2",
+                offset: 0,
+                shaderLocation: 0, // Position, see vertex shader
+            }],
+        };
+
+        // End the render pass
+
+        passEncoder.end();
+        device.queue.submit([commandEncoder.finish()]);
+
+
+
+    </script>
+</body>
+</html>
