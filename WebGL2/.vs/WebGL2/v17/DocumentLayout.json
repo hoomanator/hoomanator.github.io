@@ -1,10 +1,58 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Hooman\\WebGL2\\",
+  "WorkspaceRootPath": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Hooman\\WebGL2\\Chapter 1\\chapter1-1-minimal.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Chapter 1\\chapter1-1-minimal.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|c:\\hooman\\hoomanator.github.io\\webgl2\\chapter 12\\chapter12-8-animation.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|solutionrelative:chapter 12\\chapter12-8-animation.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|c:\\hooman\\hoomanator.github.io\\webgl2\\chapter 12\\chapter12-2-skybox.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|solutionrelative:chapter 12\\chapter12-2-skybox.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|c:\\hooman\\hoomanator.github.io\\webgl2\\chapter 11\\chapter11-1-sphere.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|solutionrelative:chapter 11\\chapter11-1-sphere.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|c:\\hooman\\hoomanator.github.io\\webgl2\\chapter 3\\chapter3-1-sierpinski.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|solutionrelative:chapter 3\\chapter3-1-sierpinski.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|c:\\hooman\\hoomanator.github.io\\webgl2\\chapter 5\\chapter5-4-rotatingsquares.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|solutionrelative:chapter 5\\chapter5-4-rotatingsquares.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|c:\\hooman\\hoomanator.github.io\\webgl2\\chapter 5\\chapter5-5-rotatingcube.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|solutionrelative:chapter 5\\chapter5-5-rotatingcube.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|c:\\hooman\\hoomanator.github.io\\webgl2\\chapter 7\\chapter7-0-modelview.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|solutionrelative:chapter 7\\chapter7-0-modelview.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|c:\\hooman\\hoomanator.github.io\\webgl2\\chapter 7\\chapter7-13-rotatingtablewithdynamicshadow.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|solutionrelative:chapter 7\\chapter7-13-rotatingtablewithdynamicshadow.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|c:\\hooman\\hoomanator.github.io\\webgl2\\chapter 7\\chapter7-10-sphere.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|solutionrelative:chapter 7\\chapter7-10-sphere.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|c:\\hooman\\hoomanator.github.io\\webgl2\\chapter 9\\chapter9-4-checkerboard2d.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|solutionrelative:chapter 9\\chapter9-4-checkerboard2d.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|c:\\hooman\\hoomanator.github.io\\webgl2\\chapter 2\\chapter2-2-colorpoints.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|solutionrelative:chapter 2\\chapter2-2-colorpoints.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|C:\\Hooman\\hoomanator.github.io\\WebGL2\\chapter 2\\chapter2-3-lines.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|solutionrelative:chapter 2\\chapter2-3-lines.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|C:\\Hooman\\hoomanator.github.io\\WebGL2\\chapter 1\\chapter1-9-trianglescolor-vao.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5D857A-EBBB-4ABA-A51F-AF9447E3A3B0}|C:\\Hooman\\hoomanator.github.io\\WebGL2|solutionrelative:chapter 1\\chapter1-9-trianglescolor-vao.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -13,21 +61,175 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 338,
+          "DockedWidth": 200,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "chapter1-1-minimal.html",
-              "DocumentMoniker": "C:\\Hooman\\WebGL2\\Chapter 1\\chapter1-1-minimal.html",
-              "RelativeDocumentMoniker": "Chapter 1\\chapter1-1-minimal.html",
-              "ToolTip": "C:\\Hooman\\WebGL2\\Chapter 1\\chapter1-1-minimal.html",
-              "RelativeToolTip": "Chapter 1\\chapter1-1-minimal.html",
+              "Title": "Chapter12-8-animation.html",
+              "DocumentMoniker": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 12\\Chapter12-8-animation.html",
+              "RelativeDocumentMoniker": "Chapter 12\\Chapter12-8-animation.html",
+              "ToolTip": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 12\\Chapter12-8-animation.html",
+              "RelativeToolTip": "Chapter 12\\Chapter12-8-animation.html",
+              "ViewState": "AQIAALkAAAAAAAAAAAAmwNYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-07-23T21:48:08.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "chapter12-2-skybox.html",
+              "DocumentMoniker": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 12\\chapter12-2-skybox.html",
+              "RelativeDocumentMoniker": "Chapter 12\\chapter12-2-skybox.html",
+              "ToolTip": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 12\\chapter12-2-skybox.html",
+              "RelativeToolTip": "Chapter 12\\chapter12-2-skybox.html",
+              "ViewState": "AQIAAK4AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-07-23T21:39:23.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "chapter11-1-sphere.html",
+              "DocumentMoniker": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 11\\chapter11-1-sphere.html",
+              "RelativeDocumentMoniker": "Chapter 11\\chapter11-1-sphere.html",
+              "ToolTip": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 11\\chapter11-1-sphere.html",
+              "RelativeToolTip": "Chapter 11\\chapter11-1-sphere.html",
+              "ViewState": "AQIAAAUBAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-07-23T21:37:13.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "chapter3-1-sierpinski.html",
+              "DocumentMoniker": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 3\\chapter3-1-sierpinski.html",
+              "RelativeDocumentMoniker": "Chapter 3\\chapter3-1-sierpinski.html",
+              "ToolTip": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 3\\chapter3-1-sierpinski.html",
+              "RelativeToolTip": "Chapter 3\\chapter3-1-sierpinski.html",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-06-03T20:39:55.318Z",
+              "WhenOpened": "2024-07-23T21:35:45.263Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "chapter5-4-rotatingsquares.html",
+              "DocumentMoniker": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 5\\chapter5-4-rotatingsquares.html",
+              "RelativeDocumentMoniker": "Chapter 5\\chapter5-4-rotatingsquares.html",
+              "ToolTip": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 5\\chapter5-4-rotatingsquares.html",
+              "RelativeToolTip": "Chapter 5\\chapter5-4-rotatingsquares.html",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-07-23T21:35:31.619Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "chapter5-5-rotatingcube.html",
+              "DocumentMoniker": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 5\\chapter5-5-rotatingcube.html",
+              "RelativeDocumentMoniker": "Chapter 5\\chapter5-5-rotatingcube.html",
+              "ToolTip": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 5\\chapter5-5-rotatingcube.html",
+              "RelativeToolTip": "Chapter 5\\chapter5-5-rotatingcube.html",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-07-23T21:33:14.837Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "chapter7-0-modelview.html",
+              "DocumentMoniker": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 7\\chapter7-0-modelview.html",
+              "RelativeDocumentMoniker": "Chapter 7\\chapter7-0-modelview.html",
+              "ToolTip": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 7\\chapter7-0-modelview.html",
+              "RelativeToolTip": "Chapter 7\\chapter7-0-modelview.html",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-07-23T21:30:20.069Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "chapter7-13-rotatingtablewithdynamicshadow.html",
+              "DocumentMoniker": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 7\\chapter7-13-rotatingtablewithdynamicshadow.html",
+              "RelativeDocumentMoniker": "Chapter 7\\chapter7-13-rotatingtablewithdynamicshadow.html",
+              "ToolTip": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 7\\chapter7-13-rotatingtablewithdynamicshadow.html",
+              "RelativeToolTip": "Chapter 7\\chapter7-13-rotatingtablewithdynamicshadow.html",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-07-23T21:26:52.122Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "chapter7-10-sphere.html",
+              "DocumentMoniker": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 7\\chapter7-10-sphere.html",
+              "RelativeDocumentMoniker": "Chapter 7\\chapter7-10-sphere.html",
+              "ToolTip": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 7\\chapter7-10-sphere.html",
+              "RelativeToolTip": "Chapter 7\\chapter7-10-sphere.html",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-07-23T21:26:10.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "chapter9-4-checkerboard2D.html",
+              "DocumentMoniker": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 9\\chapter9-4-checkerboard2D.html",
+              "RelativeDocumentMoniker": "Chapter 9\\chapter9-4-checkerboard2D.html",
+              "ToolTip": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 9\\chapter9-4-checkerboard2D.html",
+              "RelativeToolTip": "Chapter 9\\chapter9-4-checkerboard2D.html",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-07-23T21:25:33.117Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "chapter2-2-colorpoints.html",
+              "DocumentMoniker": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 2\\chapter2-2-colorpoints.html",
+              "RelativeDocumentMoniker": "Chapter 2\\chapter2-2-colorpoints.html",
+              "ToolTip": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 2\\chapter2-2-colorpoints.html",
+              "RelativeToolTip": "Chapter 2\\chapter2-2-colorpoints.html",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAmwN0AAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-07-21T21:13:06.661Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "chapter2-3-Lines.html",
+              "DocumentMoniker": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 2\\chapter2-3-Lines.html",
+              "RelativeDocumentMoniker": "Chapter 2\\chapter2-3-Lines.html",
+              "ToolTip": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 2\\chapter2-3-Lines.html",
+              "RelativeToolTip": "Chapter 2\\chapter2-3-Lines.html",
+              "ViewState": "AQIAANwAAAAAAAAAAAAmwPkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-07-21T20:10:01.36Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "chapter1-9-trianglescolor-vao.html",
+              "DocumentMoniker": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 1\\chapter1-9-trianglescolor-vao.html",
+              "RelativeDocumentMoniker": "Chapter 1\\chapter1-9-trianglescolor-vao.html",
+              "ToolTip": "C:\\Hooman\\hoomanator.github.io\\WebGL2\\Chapter 1\\chapter1-9-trianglescolor-vao.html",
+              "RelativeToolTip": "Chapter 1\\chapter1-9-trianglescolor-vao.html",
+              "ViewState": "AQIAAMEAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-07-21T19:54:19.168Z"
             }
           ]
         }
