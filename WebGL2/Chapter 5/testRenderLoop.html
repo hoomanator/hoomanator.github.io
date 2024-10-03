@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Testing RenderLoop</title>
+    <script src="Common/js/RenderLoop.js"></script>
+    <script>
+    "use strict"
+
+    var rloop = new RenderLoop(function (dt) {
+
+	console.log(rloop.fps + " " + dt);
+
+    }, 10).start();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
