@@ -1,0 +1,170 @@
+C:\Hooman\WebGPU>mkdir gpu001 && cd gpu001
+
+C:\Hooman\WebGPU\gpu001>npm init -y
+
+
+C:\Hooman\WebGPU\gpu001>npm i webpack webpack-cli
+
+
+
+C:\Hooman\WebGPU\gpu001>code .
+
+
+PS C:\Hooman\WebGPU\gpu001> npm i jquery @types/jquery
+
+
+PS C:\Hooman\WebGPU\gpu001> npm i css-loader
+
+
+PS C:\Hooman\WebGPU\gpu001> npm i typescript
+
+C:\Hooman\WebGPU\gpu001> npm i ts-loader
+
+C:\Hooman\WebGPU\gpu001> npm i undici-types
+
+
+PS C:\Hooman\WebGPU\gpu001> tsc --init
+
+- update tsconfig.json to fix undici-types bug
+
+{
+    "compilerOptions": {
+      "rootDir": "src",
+      "outDir": "dist",
+      "target": "es6",
+      "lib": [
+        "es2017",
+        "dom"
+      ],
+      "types": [
+        "node",
+        "@webgpu/types"
+      ],
+      "module": "es2015",
+      "esModuleInterop": true,
+      "strict": true,
+      "sourceMap": true,
+       "paths": {
+      // This is solely to stop a bug with @types/node as of 12/15/2023
+      "undici-types": [
+        "./node_modules/undici-types/index.d.ts"
+      ],
+    }
+    },
+    "exclude": [
+      "node_modules"
+    ]
+  }
+
+
+PS C:\Hooman\WebGPU\gpu001> npm i @webgpu/types
+
+
+PS C:\Hooman\WebGPU\gpu001> npm i @types/node
+
+
+-Update package.json Scripts 
+{
+  "name": "gpu001",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "prod": "webpack --mode production",
+    "watch": "webpack --watch --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jquery": "^3.5.32",
+    "@types/node": "^22.15.21",
+    "@webgpu/types": "^0.1.60",
+    "css-loader": "^7.1.2",
+    "jquery": "^3.7.1",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1"
+  }
+}
+
+-Create "src" and "dist" folders
+
+-Under dist folder, create "index.html"
+
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <title>WebGPU Step-by-step 1</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width-device-width, initial-scale=1">
+</head>
+<body>
+    <h1>Check WebGPU:</h1>
+    <h2 id="id-gpu-check"></h2>
+    <script src="main.bundle.js"></script>
+</body>
+</html>
+
+-Create helper.ts under src folder:
+export const CheckWebGPU = () => {
+    let result = 'Great, your current browser supports WebGPU!';
+    if (!navigator.gpu) {
+        result = `Your current browser does not support WebGPU!`;
+    }     
+    return result;
+}
+
+-Create an entry point main.ts inside src folder:
+import $ from 'jquery';
+import { CheckWebGPU } from './helper';
+
+$('#id-gpu-check').html(CheckWebGPU());
+
+- Create webpack.config.js under the root directory:
+
+const path = require("path");
+const bundleOutputDir = "./dist";
+
+module.exports = {
+    entry: {
+        main: "./src/main"  
+    },
+    output: {
+        filename: "[name].bundle.js",
+        path: path.join(__dirname, bundleOutputDir),
+        publicPath: 'public/dist/'
+    },
+    devtool: "source-map",
+    resolve: {
+        extensions: ['.js', '.ts']
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: ['/node_modules/']
+            },            
+            { test: /\.tsx?$/, loader: "ts-loader" },        
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"]
+            }
+        ]
+    }
+};
+
+
+- Run this command in the terminal: npm run prod
+
+- Run tsc in the terminal
+
+- To test our application, we need a server. 
+Click on extension link on vs code, and install live server.
+
+-Open index.html file under dist folder, and right click on the file and choose open with live server.
+
+-Hooray, you are done setting up the development.

@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+      "rootDir": "src",
+      "outDir": "dist",
+      "target": "es6",
+      "lib": [
+        "es2017",
+        "dom"
+      ],
+      "types": [
+        "node",
+        "@webgpu/types"
+      ],
+      "module": "es2015",
+      "esModuleInterop": true,
+      "strict": true,
+      "sourceMap": true,
+       "paths": {
+      // This is solely to stop a bug with @types/node as of 12/15/2023
+      "undici-types": [
+        "./node_modules/undici-types/index.d.ts"
+      ],
+    }
+    },
+    "exclude": [
+      "node_modules"
+    ]
+  }
+  

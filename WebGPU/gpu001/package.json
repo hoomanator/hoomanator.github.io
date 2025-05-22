@@ -1,0 +1,27 @@
+{
+  "name": "gpu001",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "prod": "webpack --mode production",
+    "watch": "webpack --watch --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jquery": "^3.5.32",
+    "@types/node": "^22.15.21",
+    "@webgpu/types": "^0.1.60",
+    "css-loader": "^7.1.2",
+    "jquery": "^3.7.1",
+    "node": "^22.16.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "undici-types": "^7.10.0",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1"
+  }
+}
