@@ -1,6 +1,6 @@
 # WebGPU
 
-0. [WebGPU](https://hoomanator.github.io/WebGPU/Chapter1/webgpureport.htm)
+0. [WebGPU]<https://hoomanator.github.io/WebGPU/Chapter1/webgpureport.htm>
 1. [Check WebGPU](https://hoomanator.github.io/WebGPU/gpu001/dist/index.html)
 2. [Create a Triangle](https://hoomanator.github.io/WebGPU/gpu002/dist/index.html)
 
@@ -10,3 +10,11 @@ To enable WebGPU in Safari on iOS:
 Settings > Apps > Safari > Advanced > Feature Flags
 
 Then enable WebGPU and restart Safari.
+
+This [website (https://stackoverflow.com)][website] is awesome.
+
+You will never use anything else than this [website].
+
+Check out <https://stackoverflow.com> for more fun.
+
+[website]: https://stackoverflow.com
