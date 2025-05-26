@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Perceptron</h1>
+
+<p>Will this player win?</p>
+<div id="demo"></div>
+<pre id="json"></pre>
+
+<script>
+    const xhttpr = new XMLHttpRequest();
+    xhttpr.open('GET', 'https://sofascore.p.rapidapi.com/teams/get-next-matches?teamId=3419', true);
+ //   xhttpr.open('GET', 'https://sofascore.p.rapidapi.com/teams/detail?teamId=3419', true);
+//xhttpr.open('GET', 'https://sofascore.p.rapidapi.com/players/detail?playerId=846971', true);
+//xhttpr.open('GET', 'https://sofascore.p.rapidapi.com/search?q=stakusic&type=all&page=0', true);
+//xhttpr.open('GET', 'https://sofascore.p.rapidapi.com/search?q=siakam&type=all&page=0', true);
+xhttpr.setRequestHeader('Content-Type', 'application/json');
+xhttpr.setRequestHeader('x-rapidapi-host', 'sofascore.p.rapidapi.com');
+xhttpr.setRequestHeader('x-rapidapi-key', '82f34d4facmsh62729fce9bea6d8p197e46jsn4612f69a776a');
+xhttpr.send();
+
+xhttpr.onload = ()=> {
+  if (xhttpr.status === 200) {
+      const response = JSON.parse(xhttpr.response);
+      // Process the response data here
+      const pretty = JSON.stringify(response, null, 2);
+      console.log(pretty);
+
+      document.getElementById("json").textContent = JSON.stringify(response, undefined, 2);
+
+  } else {
+      // Handle error
+      console.log("error");
+  }
+};
+   
+</script>
+
+<script>
+const threshold = 1.5;
+const inputs = [1, 0, 1, 0, 1];
+const weights = [0.7, 0.6, 0.5, 0.3, 0.4];
+
+let sum = 0;
+for (let i = 0; i < inputs.length; i++) {
+  sum += inputs[i] * weights[i];
+}
+
+document.getElementById("demo").innerHTML = (sum > threshold);  
+</script>
+
+</body>
+</html>
