@@ -1,6 +1,9 @@
+import $ from 'jquery';
+
+
 console.log("hello typescript");
-    const xhttpr = new XMLHttpRequest();
-    xhttpr.open('GET', 'https://sofascore.p.rapidapi.com/teams/get-next-matches?teamId=3419', true);
+const xhttpr = new XMLHttpRequest();
+xhttpr.open('GET', 'https://sofascore.p.rapidapi.com/teams/get-next-matches?teamId=3419', true);
  //   xhttpr.open('GET', 'https://sofascore.p.rapidapi.com/teams/detail?teamId=3419', true);
 //xhttpr.open('GET', 'https://sofascore.p.rapidapi.com/players/detail?playerId=846971', true);
 //xhttpr.open('GET', 'https://sofascore.p.rapidapi.com/search?q=stakusic&type=all&page=0', true);
@@ -27,3 +30,15 @@ xhttpr.onload = ()=> {
       console.log("error");
   }
 };
+
+const ChangePlayer = async (playerId=846971) => {
+  console.log(playerId);
+};
+
+
+ChangePlayer();
+$('#player-id-btn').on('click', ()=>{
+    const playerId = $('#player-id').val() as number;
+    ChangePlayer(playerId);
+});
+

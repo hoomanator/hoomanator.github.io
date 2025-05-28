@@ -48,3 +48,4 @@ ChangePlayer();
     const playerId = (0, jquery_1.default)('#player-id').val();
     ChangePlayer(playerId);
 });
+//# sourceMappingURL=loadsofascoredata.js.map
