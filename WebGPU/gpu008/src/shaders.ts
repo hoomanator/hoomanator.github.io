@@ -19,7 +19,7 @@ export const Shaders = () => {
         }`;
 
     return {
-        vertex,
+        vertex, 
         fragment
     };
 }
@@ -49,7 +49,7 @@ export const ShadersOld = () => {
         }`;
 
     return {
-        vertex,
+        vertex, 
         fragment
     };
 }
