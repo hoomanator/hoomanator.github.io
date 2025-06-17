@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="TensorFlow.js" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>WebGPU</title>
+</head>
+<body>
+    <script>
+        loadDoc();
+        function loadDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    myFunction(this);
+                }
+            };
+            xhttp.open("GET", "/Chapter1/", true);
+            xhttp.send();
+        }
+
+        function myFunction(xml) {
+            // console.log(xml.responseText)
+            var parser = new DOMParser();
+            var htmlDoc = parser.parseFromString(xml.responseText, 'text/html');
+            var preList = htmlDoc.getElementsByTagName("pre")[0].getElementsByTagName("a")
+            for (i = 1; i < preList.length; i++) {
+                console.log(preList[i].innerHTML)
+            }
+        }
+
+        //(async () => {
+        //    const response = await fetch('https://hoomanator.github.io/WebGPU/Chapter1/');
+        //  const data = await response.json();
+        //  let htmlString = '<ul>';
+
+        //  for (let file of data) {
+        //    htmlString += `<li><a href="${file.path}">${file.name}</a></li>`;
+        //  }
+
+        //  htmlString += '</ul>';
+        //  document.getElementsByTagName('body')[0].innerHTML = htmlString;
+        //})()
+    </script>
+</body>
+</html>
+
+
+
+<!-- HEADER -->
+<div id="header_wrap" class="outer">
+    <header class="inner">
+        <h1 id="project_title">WebGPU</h1>        
+    </header>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+        <h3>Welcome to TensorFlow.js</h3>
+        
+    </section>
+</div>
+
+<!-- FOOTER  -->
+<div id="footer_wrap" class="outer">
+    <footer class="inner">
+        <p> <a href="https://hoomanator.azurewebsites.net/">Hoomanator Home Page</a></p>
+    </footer>
+</div>
+
+
+
+
