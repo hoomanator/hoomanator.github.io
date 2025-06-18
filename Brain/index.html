@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
@@ -7,8 +8,9 @@
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>WebGPU</title>
+    <title>Brain.js</title>
 </head>
+
 <body>
     <script>
         loadDoc();
@@ -47,6 +49,7 @@
         //})()
     </script>
 </body>
+
 </html>
 
 
@@ -54,7 +57,7 @@
 <!-- HEADER -->
 <div id="header_wrap" class="outer">
     <header class="inner">
-        <h1 id="project_title">Brain.js Tutorial</h1>        
+        <h1 id="project_title">Brain.js Tutorial</h1>
     </header>
 </div>
 
@@ -62,7 +65,46 @@
 <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner">
         <h3>Welcome to Brain.js</h3>
-        
+        This course gives you a practical introduction to building neural networks in the browser and in Node.js using
+        the Brain.js JavaScript library.
+        <p></p>
+        Installation:
+
+        <h5>NPM:</h5>
+        If you can install brain.js with npm:
+        <p></p>
+        npm install brain.js
+        <p></p>
+        <h5>CDN:</h5>
+        <p></p>
+        src="//unpkg.com/brain.js"
+
+        <h5>Example:</h5>
+        <xmp>
+ // provide optional config object (or undefined). Defaults shown.
+const brain = require('brain.js');
+
+const config = {
+  binaryThresh: 0.5,
+  hiddenLayers: [3], // array of ints for the sizes of the hidden layers in the network
+  activation: 'sigmoid', // supported activation types: ['sigmoid', 'relu', 'leaky-relu', 'tanh'],
+  leakyReluAlpha: 0.01, // supported for activation type 'leaky-relu'
+};
+
+// create a simple feed-forward neural network with backpropagation
+const net = new brain.NeuralNetwork(config);
+
+net.train([
+  { input: [0, 0], output: [0] },
+  { input: [0, 1], output: [1] },
+  { input: [1, 0], output: [1] },
+  { input: [1, 1], output: [0] },
+]);
+
+const output = net.run([1, 0]); // [0.987]
+
+console.log(output);
+        </xmp>
     </section>
 </div>
 
@@ -72,7 +114,3 @@
         <p> <a href="https://hoomanator.azurewebsites.net/">Hoomanator Home Page</a></p>
     </footer>
 </div>
-
-
-
-
