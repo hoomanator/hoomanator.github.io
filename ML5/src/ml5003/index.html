@@ -12,14 +12,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="H.ico">
     <title>ml5.js imageClassifier Example</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
     <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
   </head>
+  <body style="background-color:rgb(95, 40, 129);">
   <form name="pickfile">
+    <h3 style="color:rgb(86, 176, 33);"> Welcome to Hoomanator's image recognition!</h3>
+    <p style="color:rgb(86, 176, 33);">This AI tool identifies objects in your image using machine learning. Your image will not be saved anywhere in our servers or cloud. 
+
+      </p>
+      <p style="color:rgb(176, 138, 33);">
+            Totally safe & free!
+            </p>
+      <br>
+      <br>
+
   <input name="file" type="file" name = "Upload Image"/>
 </form>
-<img id="img" width="300" height="300"/>
+<img id="img" width="400" height="400"/>
 <script>
   let uploadImage;
   let imageChanged = false;

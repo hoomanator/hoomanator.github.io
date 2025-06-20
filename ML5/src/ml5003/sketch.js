@@ -12,6 +12,7 @@ let classifier;
 // A variable to hold the image we want to classify
 let img;
 let img2;
+let myFont;
 
 // Variables for displaying the results on the canvas
 let label = "";
@@ -21,13 +22,14 @@ function preload() {
   console.log("preloading an image");
   classifier = ml5.imageClassifier("MobileNet");
   img = loadImage("images/bird.jpg");
+   myFont = loadFont('fonts/PlayfairDisplay-VariableFont_wght.ttf'); 
 }
 
 function setup() {
   createCanvas(500, 500);
   console.log("classifying an image");
   classifier.classify(img, gotResult);
-  image(img, 0, 0, 300, 300);
+  image(img, 0, 0, 400, 400);
 
 }
 
@@ -67,23 +69,24 @@ function classifyNewImage()
 function gotResult(results) {
   // The results are in an array ordered by confidence
   console.log(results);
-
+  //background(200);
   // Display the results on the canvas
-  fill(255);
-  stroke(0);
-  textSize(18);
+  fill(0, 0, 0);
+  stroke(255, 255, 255);
+  textSize(12);
+  textFont(myFont);
   label = "Guess 1: " + results[0].label;
-  confidence = "Confidence: " + nf(results[0].confidence, 0, 2);
-  text(label, 10, 320);
-  text(confidence, 10, 340);
+  confidence = "Confidence: " + nf(results[0].confidence, 0, 2) * 100 + "%";
+  text(label, 10, 60);
+  text(confidence, 10, 80);
 
   label = "Guess 2: " + results[1].label;
-  confidence = "Confidence: " + nf(results[1].confidence, 0, 2);
-  text(label, 10, 360);
-  text(confidence, 10, 380);
+  confidence = "Confidence: " + nf(results[1].confidence, 0, 2) * 100 + "%";
+  text(label, 10, 100);
+  text(confidence, 10, 120);
 
   label = "Guess 3: " + results[2].label;
-  confidence = "Confidence: " + nf(results[2].confidence, 0, 2);
-  text(label, 10, 400);
-  text(confidence, 10, 420);
+  confidence = "Confidence: " + nf(results[2].confidence, 0, 2) * 100 + "%";
+  text(label, 10, 140);
+  text(confidence, 10, 160);
 }
