@@ -17,22 +17,25 @@
     <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
   </head>
   <form name="pickfile">
-  <input name="file" type="file" />
+  <input name="file" type="file" name = "Upload Image"/>
 </form>
-<img id="img" />
+<img id="img" width="300" height="300"/>
 <script>
   let uploadImage;
+  let imageChanged = false;
   var reader1 = new FileReader();
 
 reader1.addEventListener('load', e => {
-  document.querySelector('#img').src = e.target.result;
+    document.querySelector('#img').src = e.target.result;
+    uploadImage = e.target.result;
+    //console.log("image data: ");
+    //console.log(e.target.result);
+        imageChanged = true; 
 });
 
 document.addEventListener('DOMContentLoaded', e => {
   document.forms.pickfile.file.addEventListener('change', e => {
-    reader1.readAsDataURL(e.target.files[0]);  
-    const uploadImage = e.target.result;
-    classifyNewImage();
+    reader1.readAsDataURL(e.target.files[0]);         
   });
 });
 </script>

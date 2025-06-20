@@ -24,22 +24,43 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(500, 500);
   console.log("classifying an image");
   classifier.classify(img, gotResult);
-  image(img, 0, 0, width, height);
+  image(img, 0, 0, 300, 300);
 
+}
+
+function draw()
+{
+  if(imageChanged == true)
+  {
+    classifyNewImage();
+
+    imageChanged = false;
+  }
 }
 
 function classifyNewImage()
 {
-   createCanvas(400, 400);
+
+  console.log("image data: ");
+    console.log(uploadImage);
+
+  createCanvas(500, 500);
   console.log("loading a new image");
-  img2 = loadImage(uploadImage);
+  //convert the image data to p5 image
+  loadImage(uploadImage, imgResult => {
+      img2 = imgResult;
+
+    console.log("New image data: ");
+    console.log(img2);
+
   console.log("classifying a new image");
   classifier.classify(img2, gotResult);
-  img = null;
-  image(img2, 0, 0, width, height);
+  //image(img2, 0, 0, 300, 300);
+
+    });   
 }
 
 // Callback function for when classification has finished
@@ -51,8 +72,18 @@ function gotResult(results) {
   fill(255);
   stroke(0);
   textSize(18);
-  label = "Label: " + results[0].label;
+  label = "Guess 1: " + results[0].label;
   confidence = "Confidence: " + nf(results[0].confidence, 0, 2);
+  text(label, 10, 320);
+  text(confidence, 10, 340);
+
+  label = "Guess 2: " + results[1].label;
+  confidence = "Confidence: " + nf(results[1].confidence, 0, 2);
   text(label, 10, 360);
   text(confidence, 10, 380);
+
+  label = "Guess 3: " + results[2].label;
+  confidence = "Confidence: " + nf(results[2].confidence, 0, 2);
+  text(label, 10, 400);
+  text(confidence, 10, 420);
 }
