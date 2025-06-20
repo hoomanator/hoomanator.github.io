@@ -8,50 +8,53 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="H.ico">
-    <title>ml5.js imageClassifier Example</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
-    <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
-  </head>
-  <body style="background-color:rgb(95, 40, 129);">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="H.ico">
+  <title>ml5.js imageClassifier Example</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+  <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+</head>
+
+<body style="background-color:rgb(95, 40, 129);">
   <form name="pickfile">
     <h3 style="color:rgb(86, 176, 33);"> Welcome to Hoomanator's image recognition!</h3>
-    <p style="color:rgb(86, 176, 33);">This AI tool identifies objects in your image using machine learning. Your image will not be saved anywhere in our servers or cloud. 
+    <p style="color:rgb(86, 176, 33);">This AI tool identifies objects in your image using machine learning. Your image
+      will not be saved anywhere in our servers or cloud.
 
-      </p>
-      <p style="color:rgb(176, 138, 33);">
-            Totally safe & free!
-            </p>
-      <br>
-      <br>
+    </p>
+    <p style="color:rgb(176, 138, 33);">
+      Totally safe & free!
+    </p>
+    <br>
+    <br>
 
-  <input name="file" type="file" name = "Upload Image"/>
-</form>
-<img id="img" width="400" height="400"/>
-<script>
-  let uploadImage;
-  let imageChanged = false;
-  var reader1 = new FileReader();
+    <input name="file" type="file" name="Upload Image" />
+  </form>
+  <img id="img" width="400" height="400" />
+  <script>
+    let uploadImage;
+    let imageChanged = false;
+    var reader1 = new FileReader();
 
-reader1.addEventListener('load', e => {
-    document.querySelector('#img').src = e.target.result;
-    uploadImage = e.target.result;
-    //console.log("image data: ");
-    //console.log(e.target.result);
-        imageChanged = true; 
-});
+    reader1.addEventListener('load', e => {
+      document.querySelector('#img').src = e.target.result;
+      uploadImage = e.target.result;
+      //console.log("image data: ");
+      //console.log(e.target.result);
+      imageChanged = true;
+    });
 
-document.addEventListener('DOMContentLoaded', e => {
-  document.forms.pickfile.file.addEventListener('change', e => {
-    reader1.readAsDataURL(e.target.files[0]);         
-  });
-});
-</script>
-    <script src="sketch.js"></script>
-  </body>
-  
+    document.addEventListener('DOMContentLoaded', e => {
+      document.forms.pickfile.file.addEventListener('change', e => {
+        reader1.readAsDataURL(e.target.files[0]);
+      });
+    });
+  </script>
+  <script src="sketch.js"></script>
+</body>
+
 </html>

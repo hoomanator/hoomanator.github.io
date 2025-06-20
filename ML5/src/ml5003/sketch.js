@@ -22,7 +22,7 @@ function preload() {
   console.log("preloading an image");
   classifier = ml5.imageClassifier("MobileNet");
   img = loadImage("images/bird.jpg");
-   myFont = loadFont('fonts/PlayfairDisplay-VariableFont_wght.ttf'); 
+  myFont = loadFont('fonts/PlayfairDisplay-VariableFont_wght.ttf');
 }
 
 function setup() {
@@ -33,36 +33,33 @@ function setup() {
 
 }
 
-function draw()
-{
-  if(imageChanged == true)
-  {
+function draw() {
+  if (imageChanged == true) {
     classifyNewImage();
 
     imageChanged = false;
   }
 }
 
-function classifyNewImage()
-{
+function classifyNewImage() {
 
   console.log("image data: ");
-    console.log(uploadImage);
+  console.log(uploadImage);
 
   createCanvas(500, 500);
   console.log("loading a new image");
   //convert the image data to p5 image
   loadImage(uploadImage, imgResult => {
-      img2 = imgResult;
+    img2 = imgResult;
 
     console.log("New image data: ");
     console.log(img2);
 
-  console.log("classifying a new image");
-  classifier.classify(img2, gotResult);
-  //image(img2, 0, 0, 300, 300);
+    console.log("classifying a new image");
+    classifier.classify(img2, gotResult);
+    //image(img2, 0, 0, 300, 300);
 
-    });   
+  });
 }
 
 // Callback function for when classification has finished
