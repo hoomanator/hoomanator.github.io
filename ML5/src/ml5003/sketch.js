@@ -71,9 +71,9 @@ function gotResult(results) {
   console.log(results);
   //background(200);
   // Display the results on the canvas
-  fill(0, 0, 0);
-  stroke(255, 255, 255);
-  textSize(12);
+  fill(0, 255, 0);
+  stroke(0, 0, 0);
+  textSize(13);
   textFont(myFont);
   label = "Guess 1: " + results[0].label;
   confidence = "Confidence: " + nf(results[0].confidence, 0, 2) * 100 + "%";
