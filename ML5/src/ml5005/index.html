@@ -3,7 +3,7 @@
   Learn more about the ml5.js project: https://ml5js.org/
   ml5.js license and Code of Conduct: https://github.com/ml5js/ml5-next-gen/blob/main/LICENSE.md
 
-  This example demonstrates drawing skeletons on poses for the MoveNet model.
+  This example demonstrates drawing skeletons on poses for the BlazePose model.
 -->
 
 <!DOCTYPE html>
@@ -20,11 +20,10 @@
 </head>
 
 <body style="background-color:rgb(95, 40, 129);">
-   <h3 style="color:rgb(86, 176, 33);"> Welcome to Hoomanator's Body Pose Detector (MoveNet)!</h3>
-    <p style="color:rgb(86, 176, 33);">The BodyPose is a pretrained full-body pose estimation model that can estimate poses and track key body parts in real-time. It is developed leveraging TensorFlow's MoveNet. BodyPose's MoveNet model predicts a set of 17 keypoints:
+   <h3 style="color:rgb(86, 176, 33);"> Welcome to Hoomanator's Body Pose Detector (BlazePose)!</h3>
+    <p style="color:rgb(86, 176, 33);">The BodyPose is a pretrained full-body pose estimation model that can estimate poses and track key body parts in real-time. It is developed leveraging TensorFlow's BlazePose. BodyPose's BlazePose model predicts a set of 33 keypoints:
 
-Nose, Left Eye, Right Eye, Left Ear, Right Ear, Left Shoulder, Right Shoulder, Left Elbow, Right Elbow, Left Wrist, Right Wrist, Left Hip, Right Hip, Left Knee, Right Knee, Left Ankle, and Right Ankle.
-
+Nose, Left Eye Inner, Left Eye, Left Eye Outer, Right Eye Inner, Right Eye, Right Eye Outer, Left Ear, Right Ear, Mouth Left, Mouth Right, Left Shoulder, Right Shoulder, Left Elbow, Right Elbow, Left Wrist, Right Wrist, Left Pinky, Right Pinky, Left Index, Right Index, Left Thumb, Right Thumb, Left Hip, Right Hip, Left Knee, Right Knee, Left Ankle, Right Ankle, Left Heel, Right Heel, Left Foot Index, Right Foot Index, Body Center, Forehead, Left Thumb, Left Hand, Right Thumb, and Right Hand.
    <p style="color:rgb(176, 138, 33);">
       It's very easy to use. You can use it on any platform. Simply allow your camera to be used on your phone, desktop, laptop, etc. 
       to detect body poses in real-time from the webcam video.
