@@ -7,34 +7,18 @@
  */
 
 let classifier;
-let video;
+let img;
 let label = "processing...";
 let confidence;
 
 function preload() {
   classifier = ml5.imageClassifier("MobileNet");
-  //DoodleNet is good model for drawing
-  //classifier = ml5.imageClassifier("DoodleNet");
-
-  //Or you can create your own model using teachable machine
-  //https://teachablemachine.withgoogle.com/train
-  // and upload your model
-  //https://teachablemachine.withgoogle.com/models/SMAnYd-Ky/
-  //classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/SMAnYd-Ky/");
-  // and download your model and unzip
-  //my-image-model.zip
-  //classifier = ml5.imageClassifier("./my-image-model/model.json");
-
-  //img = loadImage("images/bird.jpg")
-  video = createCapture(VIDEO, { flipped: true });
+  img = loadImage("images/bird.jpg")
 }
 
 function setup() {
-  createCanvas(640, 480);
-  //classifier.classify(img, goResults, 5);
-  //ClassifyStart to classify continously
-  classifier.classifyStart(video, goResults, 5);
-  video.hide();
+  createCanvas(400, 400);
+  classifier.classify(img, goResults, 5);
 }
 
 function goResults(results)
@@ -47,8 +31,7 @@ function goResults(results)
 function draw() {
   // Draw the webcam video
   background(220);
-  //image(img,0,0, width, height);
-  image(video,0,0, width, height);
+  image(img,0,0, width, height);
   rectMode(CENTER);
   fill(0, 0, 0, 127);
   rect(200,380, 400, 50);

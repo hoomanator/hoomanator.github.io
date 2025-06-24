@@ -1,0 +1,37 @@
+<!--
+  👋 Hello! This is an tensorflow.js example made and shared with ❤️.
+  This example demonstrates drawing image classifier using your model provided by Teachable Machine export panel.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="H.ico">
+  <title>tensorflow </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+</head>
+
+<body style="background-color:rgb(95, 40, 129);">
+   <h3 style="color:rgb(86, 176, 33);"> Welcome to Hoomanator's Live Object Recognizer!</h3>
+    <p style="color:rgb(86, 176, 33);">This AI tool identifies objects in a live video as you are moving the camera using the machine learning MobileNet model. 
+
+    </p>
+    <p style="color:rgb(176, 138, 33);">
+      It's very easy to use. You can use it on any platform. Once you are prompted to use the camera, simply allow the camera to be used (just one time) on your phone, desktop, laptop, etc., and check out the labels ("objects") with their corresponding confidence levels at the bottom of the screen. Your video
+      will not be saved anywhere in our servers or cloud. Everything runs on your device. Totally safe & free!
+    </p>
+    <div>Teachable Machine Image Model</div>
+<button type="button" onclick="init()">Start</button>
+<div id="webcam-container"></div>
+<div id="label-container"></div>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+
+  <script src="sketch.js"></script>
+</body>
+
+</html>
