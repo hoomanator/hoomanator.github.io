@@ -48,9 +48,16 @@ function draw() {
       circle(keypoint.x, keypoint.y, 4);
     }
 
+    //The rest of this code display keypoint on specific parts of face and can be commented out
 
-    //You can also iterate only one component like lips/eyeborws/etc.  
+    //You can also focus only one component like lips/eyeborws/etc.  
     // Draw exterior lip contour
+
+    let box = face.box;
+    stroke(0,0,255);
+    noFill();
+    rect(box.xMin, box.yMin, box.width, box.height);
+
     beginShape();
     for (let i = 0; i < lipsExterior.length; i++) {
       let index = lipsExterior[i];
