@@ -40,6 +40,7 @@ function setup() {
 }
 
 function draw() {
+    background(0);
   // Draw the webcam video
   //image(video, 0, 0);
   for (let face of faces) {
@@ -51,7 +52,7 @@ function draw() {
     //   circle(keypoint.x, keypoint.y, 4);
     // }
 
-    background(0);
+  
     beginShape(TRIANGLES)
     for (let i = 0; i < triangles.length; i++) {
       let tri = triangles[i];
