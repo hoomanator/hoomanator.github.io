@@ -36,22 +36,22 @@ function setup() {
   let h5Red = createElement('h5', 'Red');
   // Set the element's style and position.
   h5Red.style('color', 'red');
-  h5Red.position(10, 120);
+  h5Red.position(10, 220);
 
   let h5Green = createElement('h5', 'Green');
   // Set the element's style and position.
   h5Green.style('color', 'Green');
-  h5Green.position(10, 140);
+  h5Green.position(10, 240);
 
   let h5Blue = createElement('h5', 'Blue');
   // Set the element's style and position.
   h5Blue.style('color', 'blue');
-  h5Blue.position(10, 160);
+  h5Blue.position(10, 260);
 
 
-  rSlider = createSlider(0, 255, 0).position(50, 140);
-  gSlider = createSlider(0, 255, 0).position(50, 160);
-  bSlider = createSlider(0, 255, 0).position(50, 180);
+  rSlider = createSlider(0, 255, 0).position(50, 240);
+  gSlider = createSlider(0, 255, 0).position(50, 260);
+  bSlider = createSlider(0, 255, 0).position(50, 280);
 
   // Step 2: set your neural network options
   let options = {
