@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
@@ -9,6 +10,7 @@
 
     <title>WebGPU</title>
 </head>
+
 <body>
     <script>
         loadDoc();
@@ -47,6 +49,7 @@
         //})()
     </script>
 </body>
+
 </html>
 
 
@@ -54,7 +57,7 @@
 <!-- HEADER -->
 <div id="header_wrap" class="outer">
     <header class="inner">
-        <h1 id="project_title">TensorFlow.js Tutorial</h1>        
+        <h1 id="project_title">TensorFlow.js Tutorial</h1>
     </header>
 </div>
 
@@ -62,7 +65,78 @@
 <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner">
         <h3>Welcome to TensorFlow.js</h3>
-        
+        Explore pre-trained models to add computer vision, natural language processing (NLP), and other common ML tasks
+        to your web and browser-based applications.
+
+        <p>
+            Tensor is a data structure that could hold scalars, vectors (one dimensional numbers), Matrix (2 dimensional
+            numbers), and n-dimensional numbers.
+            Tensorflow is a google open source C++ library started in 2015 under Apache license. There is a Python and
+            Java binding for Tensorflow project. Nikhil Thorat and Daniel Smilkov are creators of the deeplearn.js
+            project.
+
+            The deeplearn.js project brought tensorflow to javascript. Deeplearn.js became Tensorflow.js.
+
+            Keras was a high level API on top of Tensorflow, Theano, and Pytorch. Keras now is part of "layers" api of
+            tensorflow.js. The core api of tensorflow.js includes all the basic tensorflow operations.
+
+            ML5 is also a high level javascript API on top of tensorflow.js.
+
+            To start your first project:
+
+            <p></p>
+
+            1. Create an html file: index.html
+            <pre>
+                <xmp>
+                <!DOCTYPE html>
+                <html lang="en">
+
+                <head>
+                    <title>TensorFlow.js</title>
+                    <meta charset="utf-8">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <link rel="shortcut icon" href="H.ico">
+                    <!-- Import the webpage's stylesheet -->
+                    <link rel="stylesheet" href="style.css">
+                </head>
+
+                <body>
+                    <h1>Tensors Creation</h1>
+
+                    <!-- Import p5 library -->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+
+                    <!-- Import TensorFlow.js library -->
+                    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0/dist/tf.min.js"
+                        type="text/javascript"></script>
+
+                    <!-- Import the page's JavaScript to do some stuff -->
+                    <script src="sketch.js"></script>
+                </body>
+
+                </html>
+              </xmp>
+        </pre>
+        2. Create a Javascript file: sketch.js
+         <pre>
+            <xmp>
+                function setup(){
+                noCanvas();
+                tf.tensor([1,2,3,4]).print();
+                }
+            </xmp>
+         </pre>
+
+        Congrats! You created your first tensor!
+        </p>
+
+        Use the following links to try TensorFlow yourself (Press F12 on chrome to see the console):
+        <p> <a href="https://hoomanator.github.io/TensorFlow/src/tf003/index.html" class="tensorflow">Tensors
+                Creation</a> </p>
+
+
     </section>
 </div>
 
@@ -72,7 +146,3 @@
         <p> <a href="https://hoomanator.azurewebsites.net/">Hoomanator Home Page</a></p>
     </footer>
 </div>
-
-
-
-
