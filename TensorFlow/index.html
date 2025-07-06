@@ -172,7 +172,8 @@
         Congrats! You created your first tensor stored in the GPU of your computer.
         </p>
         <p>
-            Tensor is an asynchronous operation. Let's try the data() function of a tensor:
+            Tensor is an asynchronous operation. Let's try couple of tensor functiond like the data() function of a
+            tensor:
         </p>
 
 
@@ -181,6 +182,7 @@
             <xmp>
             function setup() {
                 noCanvas();
+
 
                 const values = [];
                 for (let i = 0; i < 15; i++) {
@@ -191,24 +193,99 @@
                 const data1 = tf.tensor(values, shape);
                 data1.print();
 
-                //data() function of a tensor returns a "promise":
+                // data() function of a tensor returns a "promise"
                 console.log(data1.data());
 
-                //once the promise is resolved, then do something:
+                // once the promise is resolved, then...
                 data1.data().then(function (stuff) {
                     console.log(stuff);
                 }
                 );
-            }
+
+                //Or alternatively, you can use dataSync()
+                console.log(data1.dataSync());
+
+                // Once you create a tensor, it's immutable. If you need to modify a tensor, 
+                // you need to use variable function() to make a copy of a tensor, and then assign function()
+                const vdata = tf.variable(data1);
+                vdata.assign(tf.tensor([[4, 5, 6], [4, 5, 6], [4, 5, 6], [4, 5, 6], [4, 5, 6]]));
+                console.log(vdata);
+
+                // Addition operation
+                const a = tf.tensor1d([1, 2, 3, 4]);
+                const b = tf.tensor1d([10, 20, 30, 40]);
+
+                a.add(b).print();  // or tf.add(a, b)
+
+                // Matrix multiplication
+                const a1 = tf.tensor2d([1, 2], [1, 2]);
+                const b1 = tf.tensor2d([1, 2, 3, 4], [2, 2]);
+
+                a1.matMul(b1).print();  // or tf.matMul(a1, b1)
+
+                }
             </xmp>
         </pre>
         </p>
 
-        Use the following links to try TensorFlow yourself (Press F12 on chrome to see the console):
-        <p> <a href="https://hoomanator.github.io/TensorFlow/src/tf003/index.html" class="tensorflow">Tensor
-                Creation</a> </p>
-        <p> <a href="https://hoomanator.github.io/TensorFlow/src/tf004/index.html" class="tensorflow">Tensor
-                Opreations</a> </p>
+        <p>
+            Memory Managment </p>
+        <p>
+            To simualte the memory leak, we are moving our tensor creation to p5 draw() function for every frame. Then
+            we will use dispose or tidy functions to dispose those tensors.
+        </p>
+        <p>
+        <pre>
+            <xmp>                
+                function setup() {
+                    noCanvas();
+                    //every one second, call the draw function
+                    frameRate(1);
+                    }
+
+                    function draw() {
+                    const values = [];
+                    for (let i = 0; i < 15; i++) {
+                        values[i] = random(0, 100);
+                    }
+
+                    const shape = [5, 3];
+                    const data1 = tf.tensor(values, shape);
+                    //data1.print();
+                    
+                    //How many tensors are held in the memory
+                    console.log(tf.memory().numTensors);
+
+                    data1.dispose();
+
+                    //or you can use tf.tidy
+
+                    tf.tidy(myStuff);
+
+                    function myStuff()
+                    {
+                        const data1 = tf.tensor(values, shape);
+                        //console.log('hello');
+                    }
+
+                    //or use lambda fat arrow
+                    tf.tidy(() => {
+                        const data1 = tf.tensor(values, shape);
+                    }
+                    );
+                }
+            </xmp>
+        </pre>
+        </p>
+
+
+    Use the following links to try TensorFlow yourself (Press F12 on chrome to see the console):
+    <p> <a href="https://hoomanator.github.io/TensorFlow/src/tf003/index.html" class="tensorflow">Tensor
+            Creation</a> </p>
+    <p> <a href="https://hoomanator.github.io/TensorFlow/src/tf004/index.html" class="tensorflow">Tensor
+            Opreations</a> </p>
+    <p> <a href="https://hoomanator.github.io/TensorFlow/src/tf005/index.html" class="tensorflow">Memory Management</a>
+    </p>
 
 
     </section>
