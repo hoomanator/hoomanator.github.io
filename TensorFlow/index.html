@@ -69,10 +69,12 @@
         to your web and browser-based applications.
 
         <p>
-            A tensor is a data structure that could hold scalars, vectors (one dimensional numbers), Matrix (2 dimensional
+            A tensor is a data structure that could hold scalars, vectors (one dimensional numbers), Matrix (2
+            dimensional
             numbers), ..., and n-dimensional numbers.
             Tensorflow is a Google open source C++ library started in 2015 under Apache license. There is a Python and
-            Java bindings for the Tensorflow project. Nikhil Thorat and Daniel Smilkov are the creators of the deeplearn.js
+            Java bindings for the Tensorflow project. Nikhil Thorat and Daniel Smilkov are the creators of the
+            deeplearn.js
             project.
 
             The deeplearn.js project brought tensorflow to javascript. Deeplearn.js became Tensorflow.js.
@@ -84,10 +86,10 @@
 
             To start your first project:
 
-            <p></p>
+        <p></p>
 
-            1. Create an html file: index.html
-            <pre>
+        1. Create an html file: index.html
+        <pre>
                 <xmp>
                 <!DOCTYPE html>
                 <html lang="en">
@@ -120,7 +122,7 @@
               </xmp>
         </pre>
         2. Create a Javascript file: sketch.js
-         <pre>
+        <pre>
             <xmp>
                 function setup(){
                 noCanvas();
@@ -167,12 +169,46 @@
             </xmp>
          </pre>
 
-        Congrats! You created your first tensor!
+        Congrats! You created your first tensor stored in the GPU of your computer.
+        </p>
+        <p>
+            Tensor is an asynchronous operation. Let's try the data() function of a tensor:
+        </p>
+
+
+        <p>
+        <pre>
+            <xmp>
+            function setup() {
+                noCanvas();
+
+                const values = [];
+                for (let i = 0; i < 15; i++) {
+                    values[i] = random(0, 100);
+                }
+
+                const shape = [5, 3];
+                const data1 = tf.tensor(values, shape);
+                data1.print();
+
+                //data() function of a tensor returns a "promise":
+                console.log(data1.data());
+
+                //once the promise is resolved, then do something:
+                data1.data().then(function (stuff) {
+                    console.log(stuff);
+                }
+                );
+            }
+            </xmp>
+        </pre>
         </p>
 
         Use the following links to try TensorFlow yourself (Press F12 on chrome to see the console):
-        <p> <a href="https://hoomanator.github.io/TensorFlow/src/tf003/index.html" class="tensorflow">Tensors
+        <p> <a href="https://hoomanator.github.io/TensorFlow/src/tf003/index.html" class="tensorflow">Tensor
                 Creation</a> </p>
+        <p> <a href="https://hoomanator.github.io/TensorFlow/src/tf004/index.html" class="tensorflow">Tensor
+                Opreations</a> </p>
 
 
     </section>
