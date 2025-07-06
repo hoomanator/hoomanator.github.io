@@ -69,10 +69,10 @@
         to your web and browser-based applications.
 
         <p>
-            Tensor is a data structure that could hold scalars, vectors (one dimensional numbers), Matrix (2 dimensional
-            numbers), and n-dimensional numbers.
-            Tensorflow is a google open source C++ library started in 2015 under Apache license. There is a Python and
-            Java binding for Tensorflow project. Nikhil Thorat and Daniel Smilkov are creators of the deeplearn.js
+            A tensor is a data structure that could hold scalars, vectors (one dimensional numbers), Matrix (2 dimensional
+            numbers), ..., and n-dimensional numbers.
+            Tensorflow is a Google open source C++ library started in 2015 under Apache license. There is a Python and
+            Java bindings for the Tensorflow project. Nikhil Thorat and Daniel Smilkov are the creators of the deeplearn.js
             project.
 
             The deeplearn.js project brought tensorflow to javascript. Deeplearn.js became Tensorflow.js.
@@ -124,7 +124,45 @@
             <xmp>
                 function setup(){
                 noCanvas();
-                tf.tensor([1,2,3,4]).print();
+
+                //Example: Scalar tensor representing 0-dimensional array
+                const data = tf.tensor(4);
+                //const data = tf.scalar(4);  -- same
+                data.print()
+                
+                //Example 1: Vector tensor representing a 1-dimensional array
+                const data1 = tf.tensor([1, 2, 3, 4]);
+                data1.print(); //    [1, 2, 3, 4]
+                console.log(data1);
+                console.log(data1.toString()); //same as data.print()
+                
+                //Example 2: A 2x2 tensor representing a 2-dimensional array
+                const data2 = tf.tensor([255,0,0,255], [2,2]);  
+                data2.print(); // [[255, 0  ],[0  , 255]]
+
+                //Example 3: A 2x2x2 tensor representing a 3-dimensional array
+                const data3 = tf.tensor([255,0,32 ,255, 127, 0, 127, 127], [2,2,2]);  
+                data3.print(); //  [[[255, 0  ],[32 , 255]], [[127, 0  ],[127, 127]]]
+
+                //Example 4: A 2x2x2X2 tensor representing a 4-dimensional integer array
+                const data4 = tf.tensor([255.1,0,32.3 ,255, 127, 0, 127, 12, 255,0,32 ,255, 127, 0, 127, 1277], [2,2,2, 2], 'int32');  
+                data4.print(); // [[[[255, 0],[32,255]],[[127, 0],[127, 12]]],[[[255, 0 ],[32 , 255 ]],[[127, 0 ],[127, 1277]]]]
+
+                //Example 5: A 5x3 tensor representing a 2-dimensional array
+                const  values5 = [];
+                for(let i=0; i<15; i++){
+                values5[i] = random(0,100);  
+                }
+
+                const shape = [5,3];
+                const data5 = tf.tensor(values5, shape);
+                data5.print();
+                //[[15.3574314, 77.6350708, 28.1846237],
+                //    [67.9104309, 53.8909607, 91.4151306],
+                //    [96.7664871, 74.5445099, 35.9917641],
+                //    [2.9171336 , 89.9953918, 85.0509186],
+                //    [25.8264122, 64.3119736, 3.939127  ]]
+
                 }
             </xmp>
          </pre>
