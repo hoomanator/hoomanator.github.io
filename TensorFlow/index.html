@@ -457,6 +457,155 @@
         </pre>
         </p>
 
+        <p>
+            TensorFlow Layers API 
+        </p>
+        <p>
+           So far, we have focused on the core API.  Layers API simply allows us to create a layer. 
+           A sequential model is any model where the outputs of one layer are the inputs to the next layer, i.e. the model topology is a simple 'stack' of layers, with no branching or skipping.      
+           There are different types of a layer. For example, a dense layer is a layer that make all the nodes(units) connected to all the nodes(units) of two adjacent layers.
+        </p>
+        <p>
+            Then, we have to configure the model and the layers to specify the number of layers in the model, and also the number of units per layer. 
+            We also have to remember that the first layer in a Sequential model must have an inputShape. Inputs are technically not a layer themselves. Inputs are "part" of first hidden layer. So, if we have 2 input, our hidden layer has 4 nodes connecting to three outputs (is it a cat, dog or a bird), this is how you would create your model.
+        </p>
+        <p>
+        <pre>
+            <xmp>
+                const model = tf.sequential();
+
+                const configHidden = {
+                units: 4,
+                inputShape: [2],
+                activation: 'sigmoid'
+                }
+                const hidden = tf.layers.dense(configHidden);
+
+                const configOutput = {
+                units: 3,
+                activation: 'sigmoid'
+                }
+                const output = tf.layers.dense(configOutput);
+
+                model.add(hidden);
+                model.add(output);
+            </xmp>
+        </pre>
+        </p>
+
+        <p>
+            Once the model is created, we need to compile it with an optimizer. The optimizer job is to minimze the loss function.
+        </p>
+        <p>
+            <pre>
+                <xmp>
+                    //we are using sgd (stochastic gradient descent) optimizer with 0.1 learning rate
+                    const sgdOptimizer = tf.train.sgd(0.1);
+                    const config = {
+                    optimizer: sgdOptimizer,
+                    loss: "meanSquaredError"
+                    }
+                    model.compile(config);
+                </xmp>
+            </pre>
+        </p>
+        <p>
+            Now we need to train the model, adjust the weights of each connection, in order to fit our training data. First, we start with an input tensor, and see if the model can predict.
+        </p>
+        <p>
+            <pre>
+                <xmp>
+                    const inputs = tf.tensor2d([
+                    [0.25, 0.95],
+                    [0.12, 0.22],
+                    [0.4, 0.74],
+                    [0.1, 0.22],
+                    ]);
+                    let outputs = model.predict(inputs);
+                    outputs.print();
+                </xmp>
+            </pre>
+        </p>
+        <p>
+            As you can see, the result is different every time we refresh the browser. Although this works, but it doesn't really make sense, if we don't provide training data. So, let's add some training data, and then predict. Press F12 to see the result in the terminal window.
+        </p>
+        <p>
+            <pre>
+                <xmp>
+                    const model = tf.sequential();
+
+                    const configHidden = {
+                    units: 4,
+                    inputShape: [2],
+                    activation: 'sigmoid'
+                    }
+                    const hidden = tf.layers.dense(configHidden);
+
+                    const configOutput = {
+                    units: 3,
+                    activation: 'sigmoid'
+                    }
+                    const output = tf.layers.dense(configOutput);
+
+                    model.add(hidden);
+                    model.add(output);
+
+                    //we are using sgd optimizer with 0.1 learning rate
+                    const sgdOptimizer = tf.train.sgd(0.1);
+                    const config = {
+                    optimizer: sgdOptimizer,
+                    loss: "meanSquaredError"
+                    }
+                    model.compile(config);
+
+                    const xs = tf.tensor2d([
+                    [0, 0],
+                    [0.5, 0.5],
+                    [1, 1],
+                    ]);
+
+                    const ys = tf.tensor2d([
+                    [1 , 1, 1],
+                    [0.5, 0.5, 0.5],
+                    [0, 0, 0],
+                    ]);
+
+
+                    //history is an object that says how the training is going
+                    //model.fit(xs, ys, configFit).then((response) => {
+                    //  console.log(response.history.loss[0]);
+                    //});
+
+                    train().then(() => {
+                    console.log('training is complete');
+                    //Now predict with new input
+                    const inputs = tf.tensor2d([
+                        [0.25, 0.95],
+                        [0.12, 0.22],
+                        [0.4, 0.74],
+                        [0.1, 0.22],
+                    ]);
+                    let outputs = model.predict(inputs);
+                    outputs.print();
+                    }
+                    );
+
+                    async function train() {
+                    for (let i = 0; i < 100; i++) {
+                        const configFit = {
+                        shuffle: true,
+                        epochs: 100
+                        }
+                        const response = await model.fit(xs, ys, configFit);
+                        //You see the loss is going down over time
+                        console.log(response.history.loss[0]);
+                    }
+                    }
+
+                </xmp>
+            </pre>
+        </p>
+
     Use the following links to try TensorFlow yourself (Press F12 on chrome to see the console):
     <p> <a href="https://hoomanator.github.io/TensorFlow/src/tf003/index.html" class="tensorflow">Tensor
             Creation</a> </p>
@@ -467,6 +616,8 @@
     <p> <a href="https://hoomanator.github.io/TensorFlow/src/tf006/index.html" class="tensorflow">Linear Regression</a>
     </p>
     <p> <a href="https://hoomanator.github.io/TensorFlow/src/tf007/index.html" class="tensorflow">Polynomial Regression</a>
+    </p>
+    <p> <a href="https://hoomanator.github.io/TensorFlow/src/tf008/index.html" class="tensorflow">Layers API</a>
     </p>
 
 
