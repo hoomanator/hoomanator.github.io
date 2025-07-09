@@ -1,0 +1,62 @@
+https://www.youtube.com/watch?v=gieEQFIfgYc
+
+### Install typescript
+npm i typescript
+
+### create 2 folders: build and src
+
+### Create a new file Index.html under build folder
+! tab
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {background-color: black;}
+    </style>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    
+</body>
+</html>
+
+### Create a main.ts under src folder
+
+let username = 'Hooman';
+console.log(username);
+
+### tsc --init
+
+uncomment and update the root directory in the tsconfig.json
+    "rootDir": "./src", 
+uncomment and update the root directory in the tsconfig.json
+    "outDir": "./build/js",
+
+Uncomment noEmitOnError to disable ts files with errors to be compiled
+  "noEmitOnError": true, 
+
+Add "include" at the end of the configuration so it only compile tsc files in the src folder:
+    
+    
+    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+  },
+  "include" : [
+    "src"
+  ]
+}
+
+### tsc -w
+it looks for all typescript files
+this automatically recompiles when main.ts changes! so you don't have to type tsc again.
+
+tsc --noEmitOnError -w
+this will override the configuration!
+
+### Open the index.html with live server
+
+### ctrl+shift+i to see the console
+
