@@ -107,21 +107,21 @@ function gotResults(err, result) {
   console.log(result);
 
   if (result == 'A') {
-    drawRect(100);
+    drawRect(255, 0, 0);
   } else if (result == 'B') {
-    drawRect(175);
+    drawRect(0, 255, 0);
   } else if (result == 'C') {
-    drawRect(255);
+    drawRect(0, 0, 255);
   }
 }
 
 
 function draw() {
-  background(0);
+ // background(0);
 }
 
 
-function drawRect(num) {
-  fill(0, 0, num);
+function drawRect(num1, num2, num3) {
+  fill(num1, num2, num3);
   rect(0, 0, 200, 200);
 }
