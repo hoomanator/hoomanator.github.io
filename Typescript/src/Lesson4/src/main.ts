@@ -66,13 +66,63 @@ const addAll = (a: number, b: number, c?: number):
 }
 
 //default
-const sumAll = (a: number= 10, b: number, c: number = 2):
+const sumAll = (a: number = 10, b: number, c: number = 2):
     number => {
     return a + b + c;
 }
 
-logMsg(addAll(2,3,4))
-logMsg(addAll(2,3))
-logMsg(sumAll(2,3,4))
-logMsg(sumAll(2,3))
-logMsg(sumAll(undefined,3))  //10+3+2 = 15
+logMsg(addAll(2, 3, 4))
+logMsg(addAll(2, 3))
+logMsg(sumAll(2, 3, 4))
+logMsg(sumAll(2, 3))
+logMsg(sumAll(undefined, 3))  //10+3+2 = 15
+
+//The rest operator in TypeScript, denoted by three dots (...), is a powerful feature used to gather multiple elements into a single array. It is primarily used in two contexts: Rest Parameters in Functions.
+//When used in a function's parameter list, the rest operator allows a function to accept an indefinite number of arguments as an array. This array will contain all arguments passed to the function that are not explicitly defined as named parameters.
+function sum(...numbers: number[]): number {
+    let total = 0;
+    for (let num of numbers) {
+        total += num;
+    }
+    return total;
+}
+
+console.log(sum(1, 2, 3)); // Output: 6
+console.log(sum(10, 20, 30, 40, 50)); // Output: 150
+
+const total = (a: number, ...nums: number[]): number => {
+    //reduce refers to the Array.prototype.reduce() method, which is a powerful higher-order 
+    // function used to process an array and "reduce" it to a single value. 
+    // This single value can be a number, a string, an object, or even another array. 
+    return a + nums.reduce((prev, curr) => prev + curr)
+}
+
+logMsg(total(1, 2, 3, 4)) // Output: 10
+
+//The never type in TypeScript represents the type of values that will never occur. 
+// It signifies a state in the type system where a value is impossible or unreachable. 
+const createError = (errMsg: string): never => {
+    throw new Error(errMsg)
+}
+
+const infinite = () => {
+    let i: number = 1
+    while (true) {
+        i++
+        if (i > 100) break
+    }
+}
+
+//use of the never type
+const numberOrString2 = (value: number | string):
+string => {
+    if(typeof value === 'string') return 'string'
+    if(typeof value === 'number') return 'number'
+    if(isNumber(value)) return 'number' //same as above
+    return createError('this should never happen')
+}
+
+//custom type guard
+const isNumber = (value:any): boolean => {
+    return typeof value === 'number' ? true : false
+}

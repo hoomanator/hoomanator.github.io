@@ -1,11 +1,13 @@
-# Step-by-Step WebGPU Graphics Programming (21) 
-## Cone with Lighting
+# Step-by-Step WebGPU Graphics Programming (22) 
+## Torus with Lighting
 
 ### npm install
 
 ### Update vertex_data.ts
 
 ### Update index.html under dist folder
+
+### Update helper.ts
 
 ### Update main.ts
 
