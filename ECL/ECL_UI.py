@@ -12,11 +12,11 @@
 
 #import dbutils
 
-from databricks.sdk import WorkspaceClient
+from databricks.connect import DatabricksSession
+from pyspark.dbutils import DBUtils
 
-w = WorkspaceClient()
-# Access utilities (Note: widgets support via SDK may be limited)
-dbutils = w.dbutils
+spark = DatabricksSession.builder.getOrCreate()
+dbutils = DBUtils(spark)
 
 # Clear any existing widgets before creating new ones (useful for re-runs)
 dbutils.widgets.removeAll()
