@@ -90,7 +90,105 @@ MLflow experiment x--|----> MLflow Run a --> Model Version 1
 2. Run the first cell in vscode
 3. Run the second cell
 4. Run the third cell
+5. databricks://None (because it can't find your profile)
+6. In the main directory, create .env file and set your profile
+
+PROFILE=dbc-97b48e59-991b
+
+7. Run the third cell again, you should see
+# COMMAND ----------
+if not is_databricks():
+    load_dotenv()
+    profile = os.environ.get("PROFILE")
+    mlflow.set_tracking_uri(f"databricks://{profile}")
+    mlflow.set_registry_uri(f"databricks-uc://{profile}")
+
+mlflow.get_tracking_uri()
+
+you should see
+databricks://dbc-97b48e59-991b
+
+this is the profile to authenticate the databricks
+
+8. ctrl+shift+p to open the Command Palette,
+type and select PreferencesLOpen User Settings(JSON)
+add the following configuration
+"python.terminal.useEnvFile": true
+
+restart the vscode
+
+8. Run the 4th cell to set the experiment
+experiment = mlflow.set_experiment(experiment_name="/Shared/marvel-demo")
+mlflow.set_experiment_tags({"repository_name": "marvelousmlops/marvel-characters"})
+
+print(experiment)
+
 5. Open /Users/hoomanator/marvel-characters/demo_artifacts/mlflow_experiment.json
-6. Install JSON Crack to see it visually
+6. Install JSON Lens or JSON Crack extension in vscode to see it visually
+Right click on the json file and view it visually
+
+Note: you might have to delete mlflow_experiment.json first
+
+7. You can search experiment with id
+# get experiment by id
+mlflow.get_experiment(experiment.experiment_id)
+
+8. You can search experiment with a tag
+experiments = mlflow.search_experiments(
+    filter_string="tags.repository_name='marvelousmlops/marvel-characters'"
+)
+print(experiments)
+
+9. Start a run
+# start a run
+mlflow.start_run()
+
+10. get active run
+print(mlflow.active_run().__dict__)
+
+11. end the run
+mlflow.end_run()
+print(mlflow.active_run() is None)
+
+12. after the run, go and see the experiment
+View experiment at: https://dbc-97b48e59-991b.cloud.databricks.com/ml/experiments/4367869166392673
+
+notice that there is no artifacts in the artifact tab
+
+13. # start a run
+with mlflow.start_run(
+    run_name="marvel-demo-run",
+    tags={"git_sha": "1234567890abcd"},
+    description="marvel character prediction demo run",
+) as run:
+    run_id = run.info.run_id
+    mlflow.log_params({"type": "marvel_demo"})
+    mlflow.log_metrics({"metric1": 1.0, "metric2": 2.0})
 
 
+14. run_info = mlflow.get_run(run_id=run_id).to_dictionary()
+print(run_info)
+
+# COMMAND ----------
+with open("./demo_artifacts/run_info.json", "w") as json_file:
+    json.dump(run_info, json_file, indent=4)
+
+# COMMAND ----------
+print(run_info["data"]["metrics"])
+
+# COMMAND ----------
+print(run_info["data"]["params"])
+
+go to run_info.json and see it using creditlens
+also go to Experiments in Databricks and see it there.
+
+15. Reactivate the old run
+mlflow.start_run(run_id=run_id)
+
+16. add more parameters
+# COMMAND ----------
+# this will fail: not allowed to overwrite value
+mlflow.log_param("type", "marvel_demo2")
+# COMMAND ----------
+mlflow.log_param(key="purpose", value="get_certified")
+mlflow.end_run()

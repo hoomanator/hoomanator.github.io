@@ -73,7 +73,7 @@ run_info = mlflow.get_run(run_id=run_id).to_dictionary()
 print(run_info)
 
 # COMMAND ----------
-with open("../demo_artifacts/run_info.json", "w") as json_file:
+with open("./demo_artifacts/run_info.json", "w") as json_file:
     json.dump(run_info, json_file, indent=4)
 
 # COMMAND ----------
@@ -103,17 +103,18 @@ mlflow.end_run()
 
 # COMMAND ----------
 # start another run and log other things
-mlflow.start_run(run_name="marvel-demo-run-extra",
+mlflow.end_run()
+mlflow.start_run(run_name="marvel-demo-run",
                  tags={"git_sha": "1234567890abcd"},
                        description="marvel demo run with extra artifacts",)
 mlflow.log_metric(key="metric3", value=3.0)
 # dynamically log metric (trainings epochs)
 for i in range(0,3):
     mlflow.log_metric(key="metric1", value=3.0+i/2, step=i)
-mlflow.log_artifact("../demo_artifacts/mlflow_meme.jpeg")
+mlflow.log_artifact("./demo_artifacts/mlflow_meme.jpeg")
 mlflow.log_text("hello, MLflow!", "hello.txt")
 mlflow.log_dict({"k": "v"}, "dict_example.json")
-mlflow.log_artifacts("../demo_artifacts", artifact_path="demo_artifacts")
+mlflow.log_artifacts("./demo_artifacts", artifact_path="demo_artifacts")
 
 # COMMAND ----------
 # log figure
@@ -164,7 +165,7 @@ mlflow.artifacts.load_image(f"{artifact_uri}/figure.png")
 # download artifacts
 mlflow.artifacts.download_artifacts(
     artifact_uri=f"{artifact_uri}/demo_artifacts",
-    dst_path="../downloaded_artifacts")
+    dst_path="./downloaded_artifacts")
 
 # COMMAND ----------
 # nested runs: useful for hyperparameter tuning

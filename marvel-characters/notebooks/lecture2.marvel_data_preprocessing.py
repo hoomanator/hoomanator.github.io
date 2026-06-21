@@ -4,9 +4,9 @@
 # MAGIC %restart_python
 
 # COMMAND ----------
-#from pathlib import Path
-#import sys
-#sys.path.append(str(Path.cwd().parent / 'src'))
+from pathlib import Path
+import sys
+sys.path.append(str(Path.cwd().parent / 'src'))
 
 # COMMAND ----------
 import pandas as pd
@@ -17,7 +17,7 @@ from pyspark.sql import SparkSession
 from marvel_characters.config import ProjectConfig
 from marvel_characters.data_processor import DataProcessor
 
-config = ProjectConfig.from_yaml(config_path="project_config_marvel.yml", env="dev")
+config = ProjectConfig.from_yaml(config_path="../project_config_marvel.yml", env="dev")
 
 logger.info("Configuration loaded:")
 logger.info(yaml.dump(config, default_flow_style=False))
@@ -27,7 +27,7 @@ logger.info(yaml.dump(config, default_flow_style=False))
 # Load the Marvel characters dataset
 spark = SparkSession.builder.getOrCreate()
 
-filepath = "./data/marvel_characters_dataset.csv"
+filepath = "../data/marvel_characters_dataset.csv"
 
 # Load the data
 df = pd.read_csv(filepath)

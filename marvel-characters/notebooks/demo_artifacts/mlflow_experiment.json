@@ -1,9 +1,14 @@
 {
-    "_experiment_id": "642296725973777230",
+    "_experiment_id": "4367869166392673",
     "_name": "/Shared/marvel-demo",
-    "_artifact_location": "file:///Users/hoomanator/marvel-characters/notebooks/mlruns/642296725973777230",
+    "_artifact_location": "dbfs:/databricks/mlflow-tracking/4367869166392673",
     "_lifecycle_stage": "active",
-    "_tags": {},
-    "_creation_time": 1780852457982,
-    "_last_update_time": 1780852457982
+    "_tags": {
+        "mlflow.ownerId": "72678789672513",
+        "mlflow.experiment.sourceName": "/Shared/marvel-demo",
+        "mlflow.ownerEmail": "2hooman.salamat@gmail.com",
+        "mlflow.experimentType": "MLFLOW_EXPERIMENT"
+    },
+    "_creation_time": 1781043485575,
+    "_last_update_time": 1781043485575
 }
