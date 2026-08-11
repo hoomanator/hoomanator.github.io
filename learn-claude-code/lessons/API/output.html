@@ -1,0 +1,236 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prompt Evaluation Report</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 20px;
+                color: #333;
+            }
+            .header {
+                background-color: #f0f0f0;
+                padding: 20px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .summary-stats {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .stat-box {
+                background-color: #fff;
+                border-radius: 5px;
+                padding: 15px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                flex-basis: 30%;
+                min-width: 200px;
+            }
+            .stat-value {
+                font-size: 24px;
+                font-weight: bold;
+                margin-top: 5px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th {
+                background-color: #4a4a4a;
+                color: white;
+                text-align: left;
+                padding: 12px;
+            }
+            td {
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+                vertical-align: top;
+            }
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .output-cell {
+                white-space: pre-wrap;
+            }
+            .score {
+                font-weight: bold;
+                padding: 5px 10px;
+                border-radius: 3px;
+                display: inline-block;
+            }
+            .score-high {
+                background-color: #c8e6c9;
+                color: #2e7d32;
+            }
+            .score-medium {
+                background-color: #fff9c4;
+                color: #f57f17;
+            }
+            .score-low {
+                background-color: #ffcdd2;
+                color: #c62828;
+            }
+            .output {
+                overflow: auto;
+                white-space: pre-wrap;
+            }
+
+            .output pre {
+                background-color: #f5f5f5;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                padding: 10px;
+                margin: 0;
+                font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                font-size: 14px;
+                line-height: 1.4;
+                color: #333;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                overflow-x: auto;
+                white-space: pre-wrap; 
+                word-wrap: break-word; 
+            }
+
+            td {
+                width: 20%;
+            }
+            .score-col {
+                width: 80px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Prompt Evaluation Report</h1>
+            <div class="summary-stats">
+                <div class="stat-box">
+                    <div>Total Test Cases</div>
+                    <div class="stat-value">3</div>
+                </div>
+                <div class="stat-box">
+                    <div>Average Score</div>
+                    <div class="stat-value">9.3 / 10</div>
+                </div>
+                <div class="stat-box">
+                    <div>Pass Rate (≥7)</div>
+                    <div class="stat-value">100.0%</div>
+                </div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Prompt Inputs</th>
+                    <th>Solution Criteria</th>
+                    <th>Output</th>
+                    <th>Score</th>
+                    <th>Reasoning</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+            <tr>
+                <td>Testing with a highly technical passage containing domain-specific jargon and acronyms (e.g., machine learning research with terms like 'transformer architectures', 'attention mechanisms', 'BERT') to ensure proper topic extraction despite specialized terminology</td>
+                <td class="prompt-inputs"><strong>content:</strong> Recent advances in transformer architectures have significantly improved natural language processing capabilities through the development of attention mechanisms that enable models to selectively focus on relevant input tokens. BERT (Bidirectional Encoder Representations from Transformers) and subsequent models like GPT-3 leverage multi-head self-attention to capture complex semantic relationships, while techniques such as positional encoding and layer normalization enhance training stability. Furthermore, the integration of adapter modules and parameter-efficient fine-tuning methods has reduced computational overhead, making these architectures more accessible for downstream tasks including sentiment analysis, named entity recognition, and machine translation.</td>
+                <td class="criteria">• Extracts all major topics including transformer architectures, attention mechanisms, BERT, and fine-tuning techniques<br>• Handles domain-specific terminology and acronyms (BERT, GPT-3, NLP) correctly<br>• Returns output as a valid JSON array of strings with no extraneous information</td>
+                <td class="output"><pre>```json
+[
+  "transformer architectures",
+  "natural language processing",
+  "attention mechanisms",
+  "BERT",
+  "GPT-3",
+  "multi-head self-attention",
+  "semantic relationships",
+  "positional encoding",
+  "layer normalization",
+  "adapter modules",
+  "parameter-efficient fine-tuning",
+  "sentiment analysis",
+  "named entity recognition",
+  "machine translation"
+]
+```</pre></td>
+                <td class="score-col"><span class="score score-high">10</span></td>
+                <td class="reasoning">The solution fully satisfies all mandatory requirements: it contains a valid JSON array of strings, each entry is a clean topic without commentary, and the response is JSON array only. It meets all secondary criteria by extracting major topics comprehensively and handling domain terminology correctly. The extraction is thorough and accurate, capturing both high-level concepts (transformer architectures, NLP) and specific techniques (adapter modules, parameter-efficient fine-tuning). Minor weaknesses exist in topic granularity choices, but these are subjective judgments about what constitutes a 'major' topic and do not violate stated criteria.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with a dense interdisciplinary passage containing overlapping topics (philosophy, cognitive science, neurobiology) to verify the prompt can identify and separate distinct but related conceptual domains</td>
+                <td class="prompt-inputs"><strong>content:</strong> The hard problem of consciousness, articulated within philosophy of mind, intersects fundamentally with contemporary neurobiology through the study of neural correlates of consciousness (NCC). While phenomenal experience—the subjective qualitative nature of perception—remains philosophically contentious, cognitive scientists employ functional neuroimaging to map brain regions activated during conscious awareness, revealing that the prefrontal cortex and posterior cortical hot zone exhibit synchronized oscillations at gamma frequencies during conscious states. This empirical approach bridges Cartesian dualism concerns with mechanistic explanations of qualia, suggesting that subjective experience emerges from distributed neural computations rather than localized consciousness modules. Furthermore, predictive processing frameworks in cognitive neuroscience propose that consciousness arises when the brain's generative models achieve sufficient precision to create self-reflective metacognitive states, thereby integrating philosophical phenomenology with computational neurobiology.</td>
+                <td class="criteria">• Extracts distinct conceptual domains: philosophy of mind, neurobiology, and cognitive science as separate topics<br>• Identifies specific sub-topics within domains (e.g., hard problem of consciousness, neural correlates of consciousness, phenomenal experience, gamma oscillations, predictive processing)<br>• Returns output as valid JSON array of strings with no duplicates</td>
+                <td class="output"><pre>```json
+[
+  "hard problem of consciousness",
+  "philosophy of mind",
+  "neural correlates of consciousness",
+  "phenomenal experience",
+  "subjective qualitative perception",
+  "functional neuroimaging",
+  "prefrontal cortex",
+  "posterior cortical hot zone",
+  "gamma frequency oscillations",
+  "conscious awareness",
+  "Cartesian dualism",
+  "qualia",
+  "distributed neural computations",
+  "consciousness modules",
+  "predictive processing frameworks",
+  "cognitive neuroscience",
+  "generative models",
+  "metacognitive states",
+  "phenomenology",
+  "computational neurobiology"
+]
+```</pre></td>
+                <td class="score-col"><span class="score score-high">9</span></td>
+                <td class="reasoning">The solution fully satisfies all mandatory requirements: it provides a valid JSON array of strings containing topics from the article with no duplicates and no extraneous commentary. It also meets the secondary criteria by extracting distinct conceptual domains and identifying specific sub-topics within them. The extraction is thorough and well-organized. The only minor deficiency is slight redundancy in topic selection where semantically similar concepts are listed separately, though this is a minor issue that doesn't violate any stated criteria. The solution demonstrates strong understanding of the source material and appropriate topic extraction methodology.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with a passage containing implicit and subtle topics (e.g., a climate policy article that discusses economics, environmental science, and political frameworks without explicit topic labels) to evaluate whether the prompt infers underlying themes accurately</td>
+                <td class="prompt-inputs"><strong>content:</strong> Recent empirical studies demonstrate that carbon pricing mechanisms, when coupled with technological innovation incentives, can effectively decouple economic growth from greenhouse gas emissions. The analysis of Nordic countries reveals that implementing progressive tax structures on fossil fuel consumption while simultaneously investing in renewable energy infrastructure creates a multiplier effect on clean technology adoption. However, the distributional consequences warrant careful consideration; lower-income households face disproportionate energy cost burdens unless complementary social policies ensure equitable transition pathways. The interplay between market mechanisms, regulatory frameworks, and behavioral economics suggests that policy effectiveness depends critically on stakeholder coordination and long-term institutional commitment rather than isolated interventions.</td>
+                <td class="criteria">• Identifies implicit core themes including climate policy, economics, environmental science, and governance without relying on explicit topic labels<br>• Captures nuanced subtopics such as carbon pricing, technological innovation, equity/distribution, and institutional coordination<br>• Returns output as a valid JSON array of strings representing extracted topics</td>
+                <td class="output"><pre>```json
+[
+  "Carbon pricing mechanisms",
+  "Technological innovation incentives",
+  "Economic growth decoupling from emissions",
+  "Greenhouse gas emissions",
+  "Nordic countries",
+  "Progressive tax structures",
+  "Fossil fuel consumption",
+  "Renewable energy infrastructure",
+  "Clean technology adoption",
+  "Distributional consequences",
+  "Energy cost burdens",
+  "Lower-income households",
+  "Social policies",
+  "Equitable transition pathways",
+  "Market mechanisms",
+  "Regulatory frameworks",
+  "Behavioral economics",
+  "Policy effectiveness",
+  "Stakeholder coordination",
+  "Institutional commitment"
+]
+```</pre></td>
+                <td class="score-col"><span class="score score-high">9</span></td>
+                <td class="reasoning">The solution meets all mandatory requirements: it provides a valid JSON array of strings containing topics from the passage with no extra commentary. It also satisfies the secondary criteria by identifying implicit core themes across climate policy, economics, environmental science, and governance, while capturing nuanced subtopics like carbon pricing, technological innovation, equity considerations, and institutional coordination. The extraction is thorough and contextually appropriate. While there are minor issues with granularity and phrasing consistency, these do not violate any stated criteria and represent only marginal areas for refinement rather than significant deficiencies.</td>
+            </tr>
+        
+            </tbody>
+        </table>
+    </body>
+    </html>
+    

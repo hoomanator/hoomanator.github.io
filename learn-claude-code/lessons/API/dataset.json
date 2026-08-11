@@ -1,0 +1,38 @@
+[
+  {
+    "prompt_inputs": {
+      "content": "Recent advances in transformer architectures have significantly improved natural language processing capabilities through the development of attention mechanisms that enable models to selectively focus on relevant input tokens. BERT (Bidirectional Encoder Representations from Transformers) and subsequent models like GPT-3 leverage multi-head self-attention to capture complex semantic relationships, while techniques such as positional encoding and layer normalization enhance training stability. Furthermore, the integration of adapter modules and parameter-efficient fine-tuning methods has reduced computational overhead, making these architectures more accessible for downstream tasks including sentiment analysis, named entity recognition, and machine translation."
+    },
+    "solution_criteria": [
+      "Extracts all major topics including transformer architectures, attention mechanisms, BERT, and fine-tuning techniques",
+      "Handles domain-specific terminology and acronyms (BERT, GPT-3, NLP) correctly",
+      "Returns output as a valid JSON array of strings with no extraneous information"
+    ],
+    "task_description": "\n    \"Extract topics out of a passage of text from a scholarly article into JSON array of strings\"\n    ",
+    "scenario": "Testing with a highly technical passage containing domain-specific jargon and acronyms (e.g., machine learning research with terms like 'transformer architectures', 'attention mechanisms', 'BERT') to ensure proper topic extraction despite specialized terminology"
+  },
+  {
+    "prompt_inputs": {
+      "content": "The hard problem of consciousness, articulated within philosophy of mind, intersects fundamentally with contemporary neurobiology through the study of neural correlates of consciousness (NCC). While phenomenal experience\u2014the subjective qualitative nature of perception\u2014remains philosophically contentious, cognitive scientists employ functional neuroimaging to map brain regions activated during conscious awareness, revealing that the prefrontal cortex and posterior cortical hot zone exhibit synchronized oscillations at gamma frequencies during conscious states. This empirical approach bridges Cartesian dualism concerns with mechanistic explanations of qualia, suggesting that subjective experience emerges from distributed neural computations rather than localized consciousness modules. Furthermore, predictive processing frameworks in cognitive neuroscience propose that consciousness arises when the brain's generative models achieve sufficient precision to create self-reflective metacognitive states, thereby integrating philosophical phenomenology with computational neurobiology."
+    },
+    "solution_criteria": [
+      "Extracts distinct conceptual domains: philosophy of mind, neurobiology, and cognitive science as separate topics",
+      "Identifies specific sub-topics within domains (e.g., hard problem of consciousness, neural correlates of consciousness, phenomenal experience, gamma oscillations, predictive processing)",
+      "Returns output as valid JSON array of strings with no duplicates"
+    ],
+    "task_description": "\n    \"Extract topics out of a passage of text from a scholarly article into JSON array of strings\"\n    ",
+    "scenario": "Testing with a dense interdisciplinary passage containing overlapping topics (philosophy, cognitive science, neurobiology) to verify the prompt can identify and separate distinct but related conceptual domains"
+  },
+  {
+    "prompt_inputs": {
+      "content": "Recent empirical studies demonstrate that carbon pricing mechanisms, when coupled with technological innovation incentives, can effectively decouple economic growth from greenhouse gas emissions. The analysis of Nordic countries reveals that implementing progressive tax structures on fossil fuel consumption while simultaneously investing in renewable energy infrastructure creates a multiplier effect on clean technology adoption. However, the distributional consequences warrant careful consideration; lower-income households face disproportionate energy cost burdens unless complementary social policies ensure equitable transition pathways. The interplay between market mechanisms, regulatory frameworks, and behavioral economics suggests that policy effectiveness depends critically on stakeholder coordination and long-term institutional commitment rather than isolated interventions."
+    },
+    "solution_criteria": [
+      "Identifies implicit core themes including climate policy, economics, environmental science, and governance without relying on explicit topic labels",
+      "Captures nuanced subtopics such as carbon pricing, technological innovation, equity/distribution, and institutional coordination",
+      "Returns output as a valid JSON array of strings representing extracted topics"
+    ],
+    "task_description": "\n    \"Extract topics out of a passage of text from a scholarly article into JSON array of strings\"\n    ",
+    "scenario": "Testing with a passage containing implicit and subtle topics (e.g., a climate policy article that discusses economics, environmental science, and political frameworks without explicit topic labels) to evaluate whether the prompt infers underlying themes accurately"
+  }
+]

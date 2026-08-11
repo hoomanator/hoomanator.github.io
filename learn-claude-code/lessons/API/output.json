@@ -1,0 +1,53 @@
+[
+  {
+    "output": "```json\n[\n  \"transformer architectures\",\n  \"natural language processing\",\n  \"attention mechanisms\",\n  \"BERT\",\n  \"GPT-3\",\n  \"multi-head self-attention\",\n  \"semantic relationships\",\n  \"positional encoding\",\n  \"layer normalization\",\n  \"adapter modules\",\n  \"parameter-efficient fine-tuning\",\n  \"sentiment analysis\",\n  \"named entity recognition\",\n  \"machine translation\"\n]\n```",
+    "test_case": {
+      "prompt_inputs": {
+        "content": "Recent advances in transformer architectures have significantly improved natural language processing capabilities through the development of attention mechanisms that enable models to selectively focus on relevant input tokens. BERT (Bidirectional Encoder Representations from Transformers) and subsequent models like GPT-3 leverage multi-head self-attention to capture complex semantic relationships, while techniques such as positional encoding and layer normalization enhance training stability. Furthermore, the integration of adapter modules and parameter-efficient fine-tuning methods has reduced computational overhead, making these architectures more accessible for downstream tasks including sentiment analysis, named entity recognition, and machine translation."
+      },
+      "solution_criteria": [
+        "Extracts all major topics including transformer architectures, attention mechanisms, BERT, and fine-tuning techniques",
+        "Handles domain-specific terminology and acronyms (BERT, GPT-3, NLP) correctly",
+        "Returns output as a valid JSON array of strings with no extraneous information"
+      ],
+      "task_description": "\n    \"Extract topics out of a passage of text from a scholarly article into JSON array of strings\"\n    ",
+      "scenario": "Testing with a highly technical passage containing domain-specific jargon and acronyms (e.g., machine learning research with terms like 'transformer architectures', 'attention mechanisms', 'BERT') to ensure proper topic extraction despite specialized terminology"
+    },
+    "score": 10,
+    "reasoning": "The solution fully satisfies all mandatory requirements: it contains a valid JSON array of strings, each entry is a clean topic without commentary, and the response is JSON array only. It meets all secondary criteria by extracting major topics comprehensively and handling domain terminology correctly. The extraction is thorough and accurate, capturing both high-level concepts (transformer architectures, NLP) and specific techniques (adapter modules, parameter-efficient fine-tuning). Minor weaknesses exist in topic granularity choices, but these are subjective judgments about what constitutes a 'major' topic and do not violate stated criteria."
+  },
+  {
+    "output": "```json\n[\n  \"hard problem of consciousness\",\n  \"philosophy of mind\",\n  \"neural correlates of consciousness\",\n  \"phenomenal experience\",\n  \"subjective qualitative perception\",\n  \"functional neuroimaging\",\n  \"prefrontal cortex\",\n  \"posterior cortical hot zone\",\n  \"gamma frequency oscillations\",\n  \"conscious awareness\",\n  \"Cartesian dualism\",\n  \"qualia\",\n  \"distributed neural computations\",\n  \"consciousness modules\",\n  \"predictive processing frameworks\",\n  \"cognitive neuroscience\",\n  \"generative models\",\n  \"metacognitive states\",\n  \"phenomenology\",\n  \"computational neurobiology\"\n]\n```",
+    "test_case": {
+      "prompt_inputs": {
+        "content": "The hard problem of consciousness, articulated within philosophy of mind, intersects fundamentally with contemporary neurobiology through the study of neural correlates of consciousness (NCC). While phenomenal experience\u2014the subjective qualitative nature of perception\u2014remains philosophically contentious, cognitive scientists employ functional neuroimaging to map brain regions activated during conscious awareness, revealing that the prefrontal cortex and posterior cortical hot zone exhibit synchronized oscillations at gamma frequencies during conscious states. This empirical approach bridges Cartesian dualism concerns with mechanistic explanations of qualia, suggesting that subjective experience emerges from distributed neural computations rather than localized consciousness modules. Furthermore, predictive processing frameworks in cognitive neuroscience propose that consciousness arises when the brain's generative models achieve sufficient precision to create self-reflective metacognitive states, thereby integrating philosophical phenomenology with computational neurobiology."
+      },
+      "solution_criteria": [
+        "Extracts distinct conceptual domains: philosophy of mind, neurobiology, and cognitive science as separate topics",
+        "Identifies specific sub-topics within domains (e.g., hard problem of consciousness, neural correlates of consciousness, phenomenal experience, gamma oscillations, predictive processing)",
+        "Returns output as valid JSON array of strings with no duplicates"
+      ],
+      "task_description": "\n    \"Extract topics out of a passage of text from a scholarly article into JSON array of strings\"\n    ",
+      "scenario": "Testing with a dense interdisciplinary passage containing overlapping topics (philosophy, cognitive science, neurobiology) to verify the prompt can identify and separate distinct but related conceptual domains"
+    },
+    "score": 9,
+    "reasoning": "The solution fully satisfies all mandatory requirements: it provides a valid JSON array of strings containing topics from the article with no duplicates and no extraneous commentary. It also meets the secondary criteria by extracting distinct conceptual domains and identifying specific sub-topics within them. The extraction is thorough and well-organized. The only minor deficiency is slight redundancy in topic selection where semantically similar concepts are listed separately, though this is a minor issue that doesn't violate any stated criteria. The solution demonstrates strong understanding of the source material and appropriate topic extraction methodology."
+  },
+  {
+    "output": "```json\n[\n  \"Carbon pricing mechanisms\",\n  \"Technological innovation incentives\",\n  \"Economic growth decoupling from emissions\",\n  \"Greenhouse gas emissions\",\n  \"Nordic countries\",\n  \"Progressive tax structures\",\n  \"Fossil fuel consumption\",\n  \"Renewable energy infrastructure\",\n  \"Clean technology adoption\",\n  \"Distributional consequences\",\n  \"Energy cost burdens\",\n  \"Lower-income households\",\n  \"Social policies\",\n  \"Equitable transition pathways\",\n  \"Market mechanisms\",\n  \"Regulatory frameworks\",\n  \"Behavioral economics\",\n  \"Policy effectiveness\",\n  \"Stakeholder coordination\",\n  \"Institutional commitment\"\n]\n```",
+    "test_case": {
+      "prompt_inputs": {
+        "content": "Recent empirical studies demonstrate that carbon pricing mechanisms, when coupled with technological innovation incentives, can effectively decouple economic growth from greenhouse gas emissions. The analysis of Nordic countries reveals that implementing progressive tax structures on fossil fuel consumption while simultaneously investing in renewable energy infrastructure creates a multiplier effect on clean technology adoption. However, the distributional consequences warrant careful consideration; lower-income households face disproportionate energy cost burdens unless complementary social policies ensure equitable transition pathways. The interplay between market mechanisms, regulatory frameworks, and behavioral economics suggests that policy effectiveness depends critically on stakeholder coordination and long-term institutional commitment rather than isolated interventions."
+      },
+      "solution_criteria": [
+        "Identifies implicit core themes including climate policy, economics, environmental science, and governance without relying on explicit topic labels",
+        "Captures nuanced subtopics such as carbon pricing, technological innovation, equity/distribution, and institutional coordination",
+        "Returns output as a valid JSON array of strings representing extracted topics"
+      ],
+      "task_description": "\n    \"Extract topics out of a passage of text from a scholarly article into JSON array of strings\"\n    ",
+      "scenario": "Testing with a passage containing implicit and subtle topics (e.g., a climate policy article that discusses economics, environmental science, and political frameworks without explicit topic labels) to evaluate whether the prompt infers underlying themes accurately"
+    },
+    "score": 9,
+    "reasoning": "The solution meets all mandatory requirements: it provides a valid JSON array of strings containing topics from the passage with no extra commentary. It also satisfies the secondary criteria by identifying implicit core themes across climate policy, economics, environmental science, and governance, while capturing nuanced subtopics like carbon pricing, technological innovation, equity considerations, and institutional coordination. The extraction is thorough and contextually appropriate. While there are minor issues with granularity and phrasing consistency, these do not violate any stated criteria and represent only marginal areas for refinement rather than significant deficiencies."
+  }
+]

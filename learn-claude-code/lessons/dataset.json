@@ -1,0 +1,17 @@
+[
+  {
+    "task": "Parse an AWS S3 bucket name from a full S3 URI (e.g., 's3://my-bucket-name/path/to/object') and extract only the bucket name",
+    "format": "regex",
+    "solution_criteria": "The regex should correctly extract 'my-bucket-name' from various S3 URI formats, handle bucket names with hyphens and numbers, and not capture the path portion"
+  },
+  {
+    "task": "Create a Python function that takes an AWS IAM policy JSON string as input and returns True if it contains a wildcard '*' in the Resource field, False otherwise",
+    "format": "python",
+    "solution_criteria": "The function should parse JSON, check for wildcards in Resource fields (handling both string and array formats), and return a boolean without external dependencies"
+  },
+  {
+    "task": "Generate a JSON object representing an AWS Lambda environment variables configuration with three variables: DB_HOST set to 'prod-db.example.com', API_KEY set to 'secret-key-123', and ENVIRONMENT set to 'production'",
+    "format": "json",
+    "solution_criteria": "The JSON should use the correct AWS Lambda environment variables structure with a 'Variables' key containing key-value pairs, properly formatted and valid JSON"
+  }
+]
