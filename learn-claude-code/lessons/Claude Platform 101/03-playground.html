@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Particle Drift</title>
+<style>
+  html, body { margin: 0; overflow: hidden; background: #000; height: 100%; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel" data-presets="typescript">
+
+interface Particle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  hue: number;
+}
+
+const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+function resize(): void {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+const mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+window.addEventListener("mousemove", (e: MouseEvent) => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
+
+const PARTICLE_COUNT = 200;
+const particles: Particle[] = [];
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: 0,
+    vy: 0,
+    hue: (i / PARTICLE_COUNT) * 360,
+  });
+}
+
+const ACCEL = 0.25;
+const DAMPING = 0.96;
+const MAX_SPEED = 6;
+
+function step(p: Particle): void {
+  const dx = mouse.x - p.x;
+  const dy = mouse.y - p.y;
+  const dist = Math.hypot(dx, dy) || 1;
+
+  p.vx += (dx / dist) * ACCEL + (Math.random() - 0.5) * 0.15;
+  p.vy += (dy / dist) * ACCEL + (Math.random() - 0.5) * 0.15;
+
+  p.vx *= DAMPING;
+  p.vy *= DAMPING;
+
+  const speed = Math.hypot(p.vx, p.vy);
+  if (speed > MAX_SPEED) {
+    p.vx = (p.vx / speed) * MAX_SPEED;
+    p.vy = (p.vy / speed) * MAX_SPEED;
+  }
+
+  p.x += p.vx;
+  p.y += p.vy;
+}
+
+function draw(p: Particle): void {
+  ctx.beginPath();
+  ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
+  ctx.fillStyle = `hsla(${p.hue}, 90%, 60%, 0.85)`;
+  ctx.fill();
+  p.hue = (p.hue + 0.3) % 360;
+}
+
+function animate(): void {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  for (const p of particles) {
+    step(p);
+    draw(p);
+  }
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+</script>
+</body>
+</html>
