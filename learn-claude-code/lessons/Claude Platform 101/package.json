@@ -9,5 +9,8 @@
   "allowScripts": {
     "tsx@4.23.12": true,
     "dotenv@17.4.2": true
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1"
   }
 }
